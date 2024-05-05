@@ -11,6 +11,10 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        return $this->render('home/index.html.twig');
+        $email = 'thomas.laure@fortil.group'; // TODO: get email from AD/Fortil SSO
+
+        return $this->render('home/index.html.twig', [
+            'qrcode_data' => hash('md5', $email.time())
+        ]);
     }
 }
