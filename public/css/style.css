@@ -1,0 +1,54 @@
+@font-face {
+    font-family: "GT Eesti Regular";
+    src:
+        url("../fonts/GT-Eesti/GTEestiProDisplay Regular.woff2") format("woff2"),
+}
+
+body {
+    --gradient: linear-gradient(58deg, rgba(255, 109, 0, 1) 14%, rgba(255, 109, 0, 1) 29%, rgba(125, 185, 139, 1) 66%, rgba(11, 208, 247, 1) 100%);
+    font-family: "GT Eesti Regular";
+}
+
+.home-main {
+    height: 100vw;
+    background-image: url("https://fortil.group/wp-content/uploads/fortil-cycling-on-bridge-sustainable-model-responsible.jpg");
+    position: relative;
+
+    .container {
+        max-width: 30%;
+        background-color: #fff;
+        padding: 6rem 4rem;
+        border-radius: 2rem;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .qrcode-container {
+        text-align: center;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn {
+        padding: 1rem 1.5rem;
+        color: #fff;
+        font-size: calc(1rem + 0.05vw);
+        max-width: fit-content;
+        text-decoration: none;
+    }
+
+    .btn--gradient {
+        border-radius: 3px;
+        background: var(--gradient);
+        transition: 500ms ease;
+        background-size: 104%;
+        background-position: center center;
+    }
+}

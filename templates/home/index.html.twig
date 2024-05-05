@@ -1,7 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Welcome to the Fortil Event app</h1>
+<section class="home-main">
+    <div class="container">
+        <h1>Welcome to the Fortil Event app</h1>
 
-    <img src="{{ qr_code_data_uri(qrcode_data) }}" />
+        <div class="qrcode-container">
+            <img src="{{ qr_code_data_uri(qrcode_data) }}" />
+        </div>
+
+        <div class="btn-container">
+            <div>
+                <a class="btn btn--gradient" href="">Programme</a>
+            </div>
+
+            <div>
+                <a class="btn btn--gradient" href="">Formulaire</a>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
