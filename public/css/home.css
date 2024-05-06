@@ -4,7 +4,6 @@
     position: relative;
 
     .topbar {
-        padding: 1rem 0;
         position: absolute;
         top: 0;
 
@@ -13,12 +12,48 @@
             align-items: center;
             justify-content: center;
             background-color: #fff;
-            padding: 1.8rem 2rem;
+            padding: .8rem 1rem;
             border-radius: 5rem;
-            margin: 1rem 2rem;
+            margin: 1rem;
+            position: relative;
+            box-shadow: var(--main-box-shadow);
+
+            @media (min-width: 768px) {
+                & {
+                    padding: 1rem 1.2rem;
+                }
+            }
 
             .svg-bell {
-                width: 2rem;
+                width: 1.6rem;
+
+                @media (min-width: 768px) {
+                    & {
+                        width: 2rem;
+                    }
+                }
+            }
+
+            .badge {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                padding: 10px;
+                border-radius: 50%;
+                background: red;
+            }
+
+            .stretched-link {
+
+                &::before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                }
             }
         }
     }
@@ -29,7 +64,7 @@
 
     .container {
         background-color: #fff;
-        padding: 6rem 4rem;
+        padding: 4rem 2rem;
         border-radius: 2rem;
         margin: 0;
         position: absolute;
@@ -39,6 +74,7 @@
         transform: translate(-50%, -50%);
         width: 60%;
         max-width: 400px;
+        box-shadow: var(--main-box-shadow);
 
         .qrcode-container {
             text-align: center;
@@ -51,7 +87,6 @@
         .btn-container {
             display: flex;
             justify-content: space-between;
-            margin: 4rem 0 0;
     
             .btn {
                 padding: 1rem 1.5rem;
@@ -60,6 +95,10 @@
                 font-size: calc(1rem + 0.05vw);
                 max-width: fit-content;
                 text-decoration: none;
+                flex-grow: 1;
+                width: 45%;
+                max-width: 100px;
+                text-align: center;
             }
         
             .btn--gradient {
