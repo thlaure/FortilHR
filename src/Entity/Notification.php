@@ -37,6 +37,9 @@ class Notification
     #[ORM\ManyToMany(targetEntity: Form::class)]
     private Collection $forms;
 
+    #[ORM\Column]
+    private ?bool $isRead = null;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
@@ -128,6 +131,18 @@ class Notification
     public function removeForm(Form $form): static
     {
         $this->forms->removeElement($form);
+
+        return $this;
+    }
+
+    public function isRead(): ?bool
+    {
+        return $this->isRead;
+    }
+
+    public function setRead(bool $isRead): static
+    {
+        $this->isRead = $isRead;
 
         return $this;
     }
