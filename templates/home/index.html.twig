@@ -6,12 +6,20 @@
 {% endblock %}
 
 {% block body %}
-<section class="home-main">
+<div class="home-main">
+    <div class="topbar">
+        <div class="svg-container">
+            <a href="#">
+                <img class="svg-bell" src="{{ asset('svg/bell.svg') }}" alt="Bell logo">
+            </a>
+        </div>
+    </div>
+
     <div class="container">
         <h1 class="title">Welcome to the Fortil Event app</h1>
 
         <div class="qrcode-container">
-            <img class="qrcode-img" src="{{ qr_code_data_uri(qrcode_data) }}" />
+            <img class="qrcode-img" src="{{ qr_code_data_uri(qrcode_data) }}" alt="QR Code">
         </div>
 
         <div class="btn-container">
@@ -19,5 +27,5 @@
             <a class="btn btn--gradient" href="#">Formulaire</a>
         </div>
     </div>
-</section>
+</div>
 {% endblock %}

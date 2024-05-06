@@ -3,6 +3,26 @@
     background: url("https://fortil.group/wp-content/uploads/fortil-cycling-on-bridge-sustainable-model-responsible.jpg") no-repeat fixed center / cover;
     position: relative;
 
+    .topbar {
+        padding: 1rem 0;
+        position: absolute;
+        top: 0;
+
+        .svg-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 5rem;
+            margin-left: 2rem;
+
+            .svg-bell {
+                width: 2rem;
+            }
+        }
+    }
+
     .title {
         text-align: center;
     }
