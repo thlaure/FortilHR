@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
 {% block body %}
 <section class="home-main">
     <div class="container">
-        <h1>Welcome to the Fortil Event app</h1>
+        <h1 class="title">Welcome to the Fortil Event app</h1>
 
         <div class="qrcode-container">
-            <img src="{{ qr_code_data_uri(qrcode_data) }}" />
+            <img class="qrcode-img" src="{{ qr_code_data_uri(qrcode_data) }}" />
         </div>
 
         <div class="btn-container">
-            <div>
-                <a class="btn btn--gradient" href="">Programme</a>
-            </div>
-
-            <div>
-                <a class="btn btn--gradient" href="">Formulaire</a>
-            </div>
+            <a class="btn btn--gradient" href="#">Programme</a>
+            <a class="btn btn--gradient" href="#">Formulaire</a>
         </div>
     </div>
 </section>
