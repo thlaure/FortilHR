@@ -6,6 +6,7 @@
     .topbar {
         position: absolute;
         top: 0;
+        z-index: 1;
 
         .svg-container {
             display: flex;
@@ -18,20 +19,8 @@
             position: relative;
             box-shadow: var(--main-box-shadow);
 
-            @media (min-width: 768px) {
-                & {
-                    padding: 1rem 1.2rem;
-                }
-            }
-
             .svg-bell {
                 width: 1.6rem;
-
-                @media (min-width: 768px) {
-                    & {
-                        width: 2rem;
-                    }
-                }
             }
 
             .badge {
@@ -41,13 +30,6 @@
                 padding: 8px;
                 border-radius: 50%;
                 background: red;
-
-                @media (min-width: 768px) {
-                    & {
-                        top: 26%;
-                        right: 26%;
-                    }
-                }
             }
 
             .stretched-link {
@@ -71,7 +53,7 @@
 
     .container {
         background-color: #fff;
-        padding: 4rem 2rem;
+        padding: 2rem;
         border-radius: 2rem;
         margin: 0;
         position: absolute;
@@ -93,18 +75,16 @@
     
         .btn-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
     
             .btn {
                 padding: 1rem 1.5rem;
-                margin: 1rem auto;
+                margin: 1rem;
                 color: #fff;
                 font-size: calc(1rem + 0.05vw);
-                max-width: fit-content;
                 text-decoration: none;
-                flex-grow: 1;
-                width: 45%;
-                max-width: 100px;
+                flex: 1 1 0;
                 text-align: center;
             }
         
