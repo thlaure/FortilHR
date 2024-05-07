@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fortil | Back Office - Event{% endblock %}
+
+{% block body %}
+<div class="main-container">
+    <section class="container">
+        <h1 class="main-title">Events</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for event in events %}
+                    <tr>
+                        <td>{{ event.title }}</td>
+                        <td>{{ event.startDate }}</td>
+                        <td>{{ event.endDate }}</td>
+                        <td>
+                            <a class="btn btn--gradient" href="#">Edit</a>
+                            <a class="btn btn--gradient" href="#">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</div>
+{% endblock %}
