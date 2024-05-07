@@ -36,11 +36,18 @@
 
             .badge {
                 position: absolute;
-                top: 20px;
-                right: 20px;
-                padding: 10px;
+                top: 20%;
+                right: 20%;
+                padding: 8px;
                 border-radius: 50%;
                 background: red;
+
+                @media (min-width: 768px) {
+                    & {
+                        top: 26%;
+                        right: 26%;
+                    }
+                }
             }
 
             .stretched-link {
