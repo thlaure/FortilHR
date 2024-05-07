@@ -3,7 +3,7 @@
 ## Specifications
 
 ### Purpose
-Le but de cette application mobile est de centraliser et faciliter l’organisation et la logistique des évènements Fortil.
+The aim of this mobile application is to centralize and facilitate the organization and logistics of Fortil events.
 
 ### Features   
 * Store various documents (forms, PDFs, QR codes, etc.)
