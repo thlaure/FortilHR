@@ -1,100 +1,66 @@
-.home-main {
-    height: 100vh;
-    background: url("https://fortil.group/wp-content/uploads/fortil-cycling-on-bridge-sustainable-model-responsible.jpg") no-repeat fixed center / cover;
-    position: relative;
+.topbar {
+    position: absolute;
+    top: 0;
+    z-index: 1;
 
-    .topbar {
-        position: absolute;
-        top: 0;
-        z-index: 1;
-
-        .svg-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #fff;
-            padding: .8rem 1rem;
-            border-radius: 5rem;
-            margin: 1rem;
-            position: relative;
-            box-shadow: var(--main-box-shadow);
-
-            .svg-bell {
-                width: 1.6rem;
-            }
-
-            .badge {
-                position: absolute;
-                top: 20%;
-                right: 20%;
-                padding: 8px;
-                border-radius: 50%;
-                background: red;
-            }
-
-            .stretched-link {
-
-                &::before {
-                    content: '';
-                    display: block;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                }
-            }
-        }
-    }
-
-    .title {
-        text-align: center;
-    }
-
-    .container {
+    .svg-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background-color: #fff;
-        padding: 2rem;
-        border-radius: 2rem;
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        width: 60%;
-        max-width: 400px;
+        padding: .8rem 1rem;
+        border-radius: 5rem;
+        margin: 1rem;
+        position: relative;
         box-shadow: var(--main-box-shadow);
 
-        .qrcode-container {
-            text-align: center;
-    
-            .qrcode-img {
-                width: 80%;
+        .svg-bell {
+            width: 1.6rem;
+        }
+
+        .badge {
+            position: absolute;
+            top: 20%;
+            right: 20%;
+            padding: 8px;
+            border-radius: 50%;
+            background: red;
+        }
+
+        .stretched-link {
+
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
             }
         }
-    
-        .btn-container {
-            display: flex;
-            justify-content: space-evenly;
-            flex-wrap: wrap;
-    
-            .btn {
-                padding: 1rem 1.5rem;
-                margin: 1rem;
-                color: #fff;
-                font-size: calc(1rem + 0.05vw);
-                text-decoration: none;
-                flex: 1 1 0;
-                text-align: center;
-            }
-        
-            .btn--gradient {
-                border-radius: 3px;
-                background: var(--gradient);
-                transition: 500ms ease;
-                background-size: 104%;
-                background-position: center center;
-            }
+    }
+}
+
+.container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 2rem;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-width: 400px;
+    box-shadow: var(--main-box-shadow);
+
+    .qrcode-container {
+        text-align: center;
+
+        .qrcode-img {
+            width: 80%;
         }
     }
 }
