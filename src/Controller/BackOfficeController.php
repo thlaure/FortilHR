@@ -11,8 +11,6 @@ class BackOfficeController extends AbstractController
     #[Route('/back-office', name: 'app_backoffice')]
     public function index(): Response
     {
-        return $this->render('back_office/index.html.twig', [
-            'controller_name' => 'BackOfficeController',
-        ]);
+        return $this->render('back_office/index.html.twig');
     }
 }
