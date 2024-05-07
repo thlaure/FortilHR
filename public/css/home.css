@@ -42,25 +42,10 @@
     }
 }
 
-.container {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 2rem;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    width: 60%;
-    max-width: 400px;
-    box-shadow: var(--main-box-shadow);
+.qrcode-container {
+    text-align: center;
 
-    .qrcode-container {
-        text-align: center;
-
-        .qrcode-img {
-            width: 80%;
-        }
+    .qrcode-img {
+        width: 80%;
     }
 }
