@@ -25,12 +25,12 @@ class Event
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\DateTime]
+    #[Assert\Type('\DateTimeInterface')]
     #[Assert\GreaterThanOrEqual('today')]
     private ?\DateTimeInterface $startDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\DateTime]
+    #[Assert\Type('\DateTimeInterface')]
     #[Assert\GreaterThanOrEqual('today')]
     private ?\DateTimeInterface $endDate = null;
 
