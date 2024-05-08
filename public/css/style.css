@@ -124,3 +124,14 @@ body {
         padding: 1rem;
     }
 }
+
+.error {
+    color: #f00;
+}
+
+.badge-error {
+    background-color: #f00;
+    color: #fff;
+    padding: .2rem;
+    border-radius: 6px;
+}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Fortil | Back Office - Event{% endblock %}
+{% block title %}Back Office - Event{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -23,7 +23,9 @@
         <form action="{{ path('app_event_create') }}" method="POST">
             {{ form_start(form) }}
             <div class="form-errors">
-                {{ form_errors(form) }}
+                {% for error in errors %}
+                    <p class="error"><span class="badge-error">error</span> {{ error.message }}</p>
+                {% endfor %}
             </div>
 
             <div class="form-group">
