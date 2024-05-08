@@ -79,6 +79,7 @@ body {
     width: 60%;
     max-width: 400px;
     box-shadow: var(--main-box-shadow);
+    overflow-x: auto;
 }
 
 .main-title {
@@ -106,5 +107,20 @@ body {
         transition: 500ms ease;
         background-size: 104%;
         background-position: center center;
+    }
+
+    &.btn--dashboard {
+        padding: .2rem .6rem;
+        margin: .2rem;
+    }
+}
+
+.table {
+    margin: auto;
+    border-collapse: collapse;
+
+    .table-cell {
+        border: 1px solid #000;
+        padding: 1rem;
     }
 }

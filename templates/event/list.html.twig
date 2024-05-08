@@ -2,8 +2,13 @@
 
 {% block title %}Fortil | Back Office - Event{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/backoffice.css') }}">
+{% endblock %}
+
 {% block body %}
-<div class="main-container">
+<div class="main-container backoffice">
     <div class="topbar">
         <div class="svg-container">
             <a class="stretched-link" href="{{ path('app_backoffice') }}">
@@ -15,25 +20,25 @@
     <section class="container">
         <h1 class="main-title">Events</h1>
 
-        <table>
+        <table class="table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Start</th>
-                    <th>End</th>
-                    <th>Actions</th>
+                    <th class="table-cell">Name</th>
+                    <th class="table-cell">Start</th>
+                    <th class="table-cell">End</th>
+                    <th class="table-cell">Actions</th>
                 </tr>
             </thead>
 
             <tbody>
                 {% for event in events %}
                     <tr>
-                        <td>{{ event.name }}</td>
-                        <td>{{ event.startDate|date("d/m/Y H:i") }}</td>
-                        <td>{{ event.endDate|date("d/m/Y H:i") }}</td>
-                        <td>
-                            <a class="btn btn--gradient" href="#">Edit</a>
-                            <a class="btn btn--gradient" href="#">Delete</a>
+                        <td class="table-cell">{{ event.name }}</td>
+                        <td class="table-cell">{{ event.startDate|date("d/m/Y H:i") }}</td>
+                        <td class="table-cell">{{ event.endDate|date("d/m/Y H:i") }}</td>
+                        <td class="table-cell">
+                            <a class="btn btn--gradient btn--dashboard" href="#">Edit</a>
+                            <a class="btn btn--gradient btn--dashboard" href="#">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}
