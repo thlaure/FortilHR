@@ -29,8 +29,8 @@
                 {% for event in events %}
                     <tr>
                         <td>{{ event.name }}</td>
-                        <td>{{ event.startDate|date("d/m/Y") }}</td>
-                        <td>{{ event.endDate|date("d/m/Y") }}</td>
+                        <td>{{ event.startDate|date("d/m/Y H:i") }}</td>
+                        <td>{{ event.endDate|date("d/m/Y H:i") }}</td>
                         <td>
                             <a class="btn btn--gradient" href="#">Edit</a>
                             <a class="btn btn--gradient" href="#">Delete</a>
