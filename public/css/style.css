@@ -89,18 +89,18 @@ body {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+}
 
-    .btn {
-        padding: 1rem 1.5rem;
-        margin: 1rem;
-        color: #fff;
-        font-size: calc(1rem + 0.05vw);
-        text-decoration: none;
-        flex: 1 1 0;
-        text-align: center;
-    }
+.btn {
+    padding: 1rem 1.5rem;
+    margin: 1rem;
+    color: #fff;
+    font-size: calc(1rem + 0.05vw);
+    text-decoration: none;
+    flex: 1 1 0;
+    text-align: center;
 
-    .btn--gradient {
+    &.btn--gradient {
         border-radius: 3px;
         background: var(--gradient);
         transition: 500ms ease;

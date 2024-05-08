@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fortil | Back Office - Event{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/backoffice.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="main-container">
+    <div class="topbar">
+        <div class="svg-container">
+            <a class="stretched-link" href="{{ path('app_backoffice') }}">
+                <img class="svg" src="{{ asset('svg/arrow-left-solid.svg') }}" alt="Left arrow SVG" width="40">
+            </a>
+        </div>
+    </div>
+
+    <section class="container">
+        <h1 class="main-title">Create event</h1>
+
+        <form action="{{ path('app_event_create') }}" method="POST">
+            {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name, {'attr': {'class': 'form-input form-input--text'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.startDate) }}
+                {{ form_widget(form.startDate, {'attr': {'class': 'form-input form-input--date'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.endDate) }}
+                {{ form_widget(form.endDate, {'attr': {'class': 'form-input form-input--date'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.program) }}
+                {{ form_widget(form.program, {'attr': {'class': 'form-input form-input--textarea'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.image) }}
+                {{ form_widget(form.image, {'attr': {'class': 'form-input'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_widget(form.submit, {'attr': {'class': 'form-button btn btn--gradient'}}) }}
+            </div>
+            {{ form_end(form) }}
+        </form>
+    </section>
+</div>
+{% endblock %}

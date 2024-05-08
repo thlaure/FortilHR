@@ -1,0 +1,29 @@
+.form-group {
+    margin-bottom: 1rem;
+    
+    label {
+        display: block;
+    }
+
+    .form-input {
+        display: block;
+        width: 100%;
+
+        &.form-input--text {
+            height: 30px;
+        }
+
+        &.form-input--date {
+            height: 30px;
+        }
+
+        &.form-input--textarea {
+            height: 100px;
+        }
+    }
+
+    .form-button {
+        border: none;
+        margin: 0;
+    }
+}

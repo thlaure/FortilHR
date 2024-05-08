@@ -23,11 +23,11 @@ class Event
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $endDate = null;
 
-    #[ORM\OneToOne(mappedBy: 'event', cascade: ['persist', 'remove'])]
-    private ?Program $program = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $program = null;
 
     public function getId(): ?int
     {
@@ -70,23 +70,6 @@ class Event
         return $this;
     }
 
-    public function getProgram(): ?Program
-    {
-        return $this->program;
-    }
-
-    public function setProgram(Program $program): static
-    {
-        // set the owning side of the relation if necessary
-        if ($program->getEvent() !== $this) {
-            $program->setEvent($this);
-        }
-
-        $this->program = $program;
-
-        return $this;
-    }
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -95,6 +78,18 @@ class Event
     public function setImage(?string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getProgram(): ?string
+    {
+        return $this->program;
+    }
+
+    public function setProgram(string $program): static
+    {
+        $this->program = $program;
 
         return $this;
     }
