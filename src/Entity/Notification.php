@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: NotificationRepository::class)]
 class Notification
@@ -17,12 +18,26 @@ class Notification
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Type(
+        type: 'string',
+        message: 'The document title is not valid'
+    )]
+    #[Assert\Length(max: 255, maxMessage: 'The title is not valid')]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank]
+    #[Assert\Type(
+        type: 'string',
+        message: 'The message is not valid'
+    )]
+    #[Assert\Length(max: 2000, maxMessage: 'The message is not valid')]
     private ?string $message = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\DateTime]
+    #[Assert\GreaterThanOrEqual('today')]
     private ?\DateTimeInterface $sendDate = null;
 
     /**
@@ -38,6 +53,7 @@ class Notification
     private Collection $forms;
 
     #[ORM\Column]
+    #[Assert\Type('bool')]
     private ?bool $isRead = null;
 
     public function __construct()

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\FormRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: FormRepository::class)]
 class Form
@@ -14,9 +15,18 @@ class Form
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Type(
+        type: 'string',
+        message: 'The form title is not valid'
+    )]
+    #[Assert\Length(max: 255, maxMessage: 'The title is not valid')]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Url]
+    #[Assert\Length(max: 255, maxMessage: 'The link is not valid')]
     private ?string $link = null;
 
     public function getId(): ?int

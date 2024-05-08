@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\DocumentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DocumentRepository::class)]
 class Document
@@ -14,9 +15,21 @@ class Document
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Type(
+        type: 'string',
+        message: 'The document title is not valid'
+    )]
+    #[Assert\Length(max: 255, maxMessage: 'The title is not valid')]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Type(
+        type: 'string',
+        message: 'The document path is not valid'
+    )]
+    #[Assert\Length(max: 255, maxMessage: 'The document path is not valid')]
     private ?string $path = null;
 
     public function getId(): ?int

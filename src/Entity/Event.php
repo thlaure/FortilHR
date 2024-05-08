@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\EventRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 class Event
@@ -15,18 +16,35 @@ class Event
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Type(
+        type: 'string',
+        message: 'The event name is not valid'
+    )]
+    #[Assert\Length(max: 255, maxMessage: 'The event name is not valid')]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\DateTime]
+    #[Assert\GreaterThanOrEqual('today')]
     private ?\DateTimeInterface $startDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\DateTime]
+    #[Assert\GreaterThanOrEqual('today')]
     private ?\DateTimeInterface $endDate = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Image]
     private ?string $image = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank]
+    #[Assert\Type(
+        type: 'string',
+        message: 'The program is not valid'
+    )]
+    #[Assert\Length(max: 2000, maxMessage: 'The program is not valid')]
     private ?string $program = null;
 
     public function getId(): ?int
