@@ -17,7 +17,7 @@ class EventController extends AbstractController
     #[Route('/back-office/event/all', name: 'app_event_list', methods: ['GET'])]
     public function list(EventRepository $eventRepository): Response
     {
-        return $this->render('back-office/event/list.html.twig', [
+        return $this->render('back_office/event/list.html.twig', [
             'events' => $eventRepository->findBy([], ['startDate' => 'DESC', 'endDate' => 'DESC']),
         ]);
     }
@@ -33,7 +33,7 @@ class EventController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $errors = $validator->validate($event);
             if (count($errors) > 0) {
-                return $this->render('back-office/event/create.html.twig', [
+                return $this->render('back_office/event/create.html.twig', [
                     'form' => $form,
                     'errors' => $errors,
                 ]);
@@ -45,7 +45,7 @@ class EventController extends AbstractController
             return $this->redirectToRoute('app_event_list');
         }
 
-        return $this->render('back-office/event/create.html.twig', [
+        return $this->render('back_office/event/create.html.twig', [
             'form' => $form
         ]);
     }

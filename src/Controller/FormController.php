@@ -17,7 +17,7 @@ class FormController extends AbstractController
     #[Route('/back-office/form/all', name: 'app_form_list')]
     public function list(FormRepository $formRepository): Response
     {
-        return $this->render('back-office/form/index.html.twig', [
+        return $this->render('back_office/form/index.html.twig', [
             'forms' => $formRepository->findBy([], ['id' => 'DESC']),
         ]);
     }
@@ -33,7 +33,7 @@ class FormController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $errors = $validator->validate($googleForm);
             if (count($errors) > 0) {
-                return $this->render('back-office/form/create.html.twig', [
+                return $this->render('back_office/form/create.html.twig', [
                     'form' => $form,
                     'errors' => $errors,
                 ]);
@@ -45,7 +45,7 @@ class FormController extends AbstractController
             return $this->redirectToRoute('app_form_list');
         }
 
-        return $this->render('back-office/form/create.html.twig', [
+        return $this->render('back_office/form/create.html.twig', [
             'form' => $form
         ]);
     }
