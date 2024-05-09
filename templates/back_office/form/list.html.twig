@@ -36,7 +36,7 @@
                         <td class="table-cell"><a href={{ form.link }}>{{ form.link }}</a></td>
                         <td class="table-cell">
                             <a class="btn btn--gradient btn--dashboard" href="#">Edit</a>
-                            <a class="btn btn--gradient btn--dashboard" href="#">Delete</a>
+                            <a class="btn btn--gradient btn--dashboard" href="{{ path('app_form_delete', {'id': form.id}) }}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}

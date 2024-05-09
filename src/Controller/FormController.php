@@ -17,7 +17,7 @@ class FormController extends AbstractController
     #[Route('/back-office/form/all', name: 'app_form_list')]
     public function list(FormRepository $formRepository): Response
     {
-        return $this->render('back_office/form/index.html.twig', [
+        return $this->render('back_office/form/list.html.twig', [
             'forms' => $formRepository->findBy([], ['id' => 'DESC']),
         ]);
     }
@@ -48,5 +48,14 @@ class FormController extends AbstractController
         return $this->render('back_office/form/create.html.twig', [
             'form' => $form
         ]);
+    }
+
+    #[Route('/back-office/form/{id}/delete', name: 'app_form_delete')]
+    public function delete(Form $form, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($form);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_form_list');
     }
 }
