@@ -18,7 +18,7 @@ class EventController extends AbstractController
     public function list(EventRepository $eventRepository): Response
     {
         return $this->render('event/list.html.twig', [
-            'events' => $eventRepository->findBy([], ['startDate' => 'ASC']),
+            'events' => $eventRepository->findBy([], ['startDate' => 'DESC', 'endDate' => 'DESC']),
         ]);
     }
 
@@ -30,9 +30,15 @@ class EventController extends AbstractController
 
         $form->handleRequest($request);
 
-        $errors = $validator->validate($event);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            $errors = $validator->validate($event);
+            if (count($errors) > 0) {
+                return $this->render('event/create.html.twig', [
+                    'form' => $form,
+                    'errors' => $errors,
+                ]);
+            }
+
             $entityManager->persist($event);
             $entityManager->flush();
             
@@ -40,8 +46,7 @@ class EventController extends AbstractController
         }
 
         return $this->render('event/create.html.twig', [
-            'form' => $form,
-            'errors' => $errors,
+            'form' => $form
         ]);
     }
 }

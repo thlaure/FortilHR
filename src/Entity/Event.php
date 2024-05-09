@@ -35,8 +35,8 @@ class Event
     private ?\DateTimeInterface $endDate = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\Image]
-    private ?string $image = null;
+    #[Assert\Type('string')]
+    private ?string $imageName = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
@@ -88,14 +88,14 @@ class Event
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImageName(): ?string
     {
-        return $this->image;
+        return $this->imageName;
     }
 
-    public function setImage(?string $image): static
+    public function setImageName(?string $imageName): static
     {
-        $this->image = $image;
+        $this->imageName = $imageName;
 
         return $this;
     }

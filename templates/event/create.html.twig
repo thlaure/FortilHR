@@ -22,11 +22,13 @@
 
         <form action="{{ path('app_event_create') }}" method="POST">
             {{ form_start(form) }}
-            <div class="form-errors">
-                {% for error in errors %}
-                    <p class="error"><span class="badge-error">error</span> {{ error.message }}</p>
-                {% endfor %}
-            </div>
+            {% if errors is defined %}
+                <div class="form-errors">
+                    {% for error in errors %}
+                        <p class="error"><span class="badge-error">error</span> {{ error.message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
 
             <div class="form-group">
                 {{ form_label(form.name) }}

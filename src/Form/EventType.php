@@ -31,7 +31,8 @@ class EventType extends AbstractType
             ])
             ->add('image', FileType::class, [
                 'label' => 'Image',
-                'required' => false
+                'required' => false,
+                'mapped' => false
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => ['label' => 'Save']
