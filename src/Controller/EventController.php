@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class EventController extends AbstractController
 {
-    #[Route('/event/all', name: 'app_event_list', methods: ['GET'])]
+    #[Route('/back-office/event/all', name: 'app_event_list', methods: ['GET'])]
     public function list(EventRepository $eventRepository): Response
     {
         return $this->render('event/list.html.twig', [
@@ -22,7 +22,7 @@ class EventController extends AbstractController
         ]);
     }
 
-    #[Route('/event', name: 'app_event_create', methods: ['GET', 'POST'])]
+    #[Route('/back-office/event', name: 'app_event_create', methods: ['GET', 'POST'])]
     public function create(EntityManagerInterface $entityManager, Request $request, ValidatorInterface $validator): Response
     {
         $event = new Event();

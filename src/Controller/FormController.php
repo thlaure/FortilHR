@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class FormController extends AbstractController
 {
-    #[Route('/backoffice/form', name: 'app_form_list')]
+    #[Route('/back-office/form', name: 'app_form_list')]
     public function list(FormRepository $formRepository): Response
     {
         return $this->render('form/index.html.twig', [
