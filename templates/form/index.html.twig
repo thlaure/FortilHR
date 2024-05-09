@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Back Office - Form{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/backoffice.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="main-container backoffice">
+    <div class="topbar">
+        <div class="svg-container">
+            <a class="stretched-link" href="{{ path('app_backoffice') }}">
+                <img class="svg" src="{{ asset('svg/arrow-left-solid.svg') }}" alt="Left arrow SVG" width="40">
+            </a>
+        </div>
+    </div>
+
+    <section class="container">
+        <h1 class="main-title">Forms</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="table-cell">Title</th>
+                    <th class="table-cell">Link</th>
+                    <th class="table-cell">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for form in forms %}
+                    <tr>
+                        <td class="table-cell">{{ form.title }}</td>
+                        <td class="table-cell"><a href={{ form.link }}>{{ form.link }}</a></td>
+                        <td class="table-cell">
+                            <a class="btn btn--gradient btn--dashboard" href="#">Edit</a>
+                            <a class="btn btn--gradient btn--dashboard" href="#">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</div>
+{% endblock %}
