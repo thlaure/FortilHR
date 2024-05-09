@@ -49,4 +49,13 @@ class EventController extends AbstractController
             'form' => $form
         ]);
     }
+
+    #[Route('/back-office/event/{id}/delete', name: 'app_event_delete')]
+    public function delete(Event $event, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($event);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_event_list');
+    }
 }
