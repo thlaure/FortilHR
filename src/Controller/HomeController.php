@@ -23,7 +23,7 @@ class HomeController extends AbstractController
             'qrcode_data' => hash('md5', $email.time()),
             'unread_notifications' => $unreadNotifications,
             'event' => $event,
-            'google_form' => $googleForm,
+            'form' => $googleForm,
         ]);
     }
 }
