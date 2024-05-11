@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} - Program{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="main-container">
+    <div class="topbar">
+        <div class="svg-container">
+            <a class="stretched-link" href="{{ path('app_home') }}">
+                <img class="svg" src="{{ asset('svg/arrow-left-solid.svg') }}" alt="Left arrow SVG" width="40">
+            </a>
+        </div>
+    </div>
+
+    <section class="container">
+        <h1 class="main-title">Program</h1>
+
+        <div class="event">
+            <h2 class="event-title">{{ event.name }}</h2>
+            <p class="small">{{ event.startDate|date("d/m/Y H:i") }} - {{ event.endDate|date("d/m/Y H:i") }}</p>
+            <p class="event-description">{{ event.program }}</p>
+        </div>
+    </section>
+</div>
+{% endblock %}

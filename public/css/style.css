@@ -134,3 +134,8 @@ body {
     padding: .2rem;
     border-radius: 6px;
 }
+
+.small {
+    font-size: .8rem;
+    color: #7e7e7e;
+}
