@@ -77,7 +77,6 @@ body {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 60%;
-    max-width: 400px;
     box-shadow: var(--main-box-shadow);
     overflow-x: auto;
 }
