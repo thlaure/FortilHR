@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\HumanResourcesForm;
+use App\Exception\DatabaseException;
 use App\Form\HumanResourcesFormType;
 use App\Repository\HumanResourcesFormRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,7 +25,7 @@ class HumanResourcesFormController extends AbstractController
                 'hr_forms' => $hrForms,
             ]);
         } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
+            throw new DatabaseException($e->getMessage());
         }
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Exception\DatabaseException;
 use App\Repository\EventRepository;
 use App\Repository\HumanResourcesFormRepository;
 use App\Repository\NotificationRepository;
@@ -27,7 +28,7 @@ class HomeController extends AbstractController
                 'hr_form' => $hrForm,
             ]);
         } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
+            throw new DatabaseException($e->getMessage());
         }
     }
 }

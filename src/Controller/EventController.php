@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Exception\DatabaseException;
 use App\Form\EventType;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,7 +25,7 @@ class EventController extends AbstractController
                 'events' => $events,
             ]);
         } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
+            throw new DatabaseException($e->getMessage());
         }
     }
 
