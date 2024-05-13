@@ -47,9 +47,9 @@ class Notification
     private Collection $documents;
 
     /**
-     * @var Collection<int, Form>
+     * @var Collection<int, HumanResourcesForm>
      */
-    #[ORM\ManyToMany(targetEntity: Form::class)]
+    #[ORM\ManyToMany(targetEntity: HumanResourcesForm::class)]
     private Collection $forms;
 
     #[ORM\Column]

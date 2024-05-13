@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\FormRepository;
+use App\Repository\HumanResourcesFormRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: FormRepository::class)]
-class Form
+#[ORM\Entity(repositoryClass: HumanResourcesFormRepository::class)]
+class HumanResourcesForm
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

@@ -25,8 +25,8 @@
 
         <div class="btn-container">
             <a class="btn btn--gradient" href="{{ path('app_event_show', {'id': event.id}) }}">Program</a>
-            {% if form is not null and form.link %}
-                <a class="btn btn--gradient" href="{{ form.link }}">Form</a>
+            {% if hr_form is not null and hr_form.link %}
+                <a class="btn btn--gradient" href="{{ hr_form.link }}">Form</a>
             {% endif %}
         </div>
     </section>

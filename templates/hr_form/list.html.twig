@@ -30,13 +30,13 @@
             </thead>
 
             <tbody>
-                {% for form in forms %}
+                {% for hr_form in hr_forms %}
                     <tr>
-                        <td class="table-cell">{{ form.title }}</td>
-                        <td class="table-cell"><a href={{ form.link }}>{{ form.link }}</a></td>
+                        <td class="table-cell">{{ hr_form.title }}</td>
+                        <td class="table-cell"><a href={{ hr_form.link }}>{{ hr_form.link }}</a></td>
                         <td class="table-cell">
                             <a class="btn btn--gradient btn--dashboard" href="#">Edit</a>
-                            <a class="btn btn--gradient btn--dashboard" href="{{ path('app_form_delete', {'id': form.id}) }}">Delete</a>
+                            <a class="btn btn--gradient btn--dashboard" href="{{ path('app_hrform_delete', {'id': hr_form.id}) }}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}
