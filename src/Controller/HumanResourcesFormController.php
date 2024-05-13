@@ -7,6 +7,7 @@ use App\Exception\DatabaseException;
 use App\Form\HumanResourcesFormType;
 use App\Repository\HumanResourcesFormRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,10 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class HumanResourcesFormController extends AbstractController
 {
+    public function __construct(private LoggerInterface $logger)
+    {
+    }
+
     #[Route('/back-office/form/all', name: 'app_hrform_list')]
     public function list(HumanResourcesFormRepository $hrFormRepository): Response
     {
@@ -25,6 +30,7 @@ class HumanResourcesFormController extends AbstractController
                 'hr_forms' => $hrForms,
             ]);
         } catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
             throw new DatabaseException($e->getMessage());
         }
     }
@@ -50,6 +56,7 @@ class HumanResourcesFormController extends AbstractController
                 $entityManager->persist($hrForm);
                 $entityManager->flush();
             } catch (\Exception $e) {
+                $this->logger->error($e->getMessage());
                 $this->addFlash('error', $e->getMessage());
             }
             
@@ -68,6 +75,7 @@ class HumanResourcesFormController extends AbstractController
             $entityManager->remove($hrForm);
             $entityManager->flush();
         } catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
             $this->addFlash('error', $e->getMessage());
         }
 
