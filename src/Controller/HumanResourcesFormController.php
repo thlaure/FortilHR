@@ -17,9 +17,15 @@ class HumanResourcesFormController extends AbstractController
     #[Route('/back-office/form/all', name: 'app_hrform_list')]
     public function list(HumanResourcesFormRepository $hrFormRepository): Response
     {
-        return $this->render('hr_form/list.html.twig', [
-            'hr_forms' => $hrFormRepository->findBy([], ['id' => 'DESC']),
-        ]);
+        try {
+            $hrForms = $hrFormRepository->findBy([], ['id' => 'DESC']);
+
+            return $this->render('hr_form/list.html.twig', [
+                'hr_forms' => $hrForms,
+            ]);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
     }
 
     #[Route('/back-office/form/create', name: 'app_hrform_create', methods: ['GET', 'POST'])]
@@ -39,8 +45,12 @@ class HumanResourcesFormController extends AbstractController
                 ]);
             }
 
-            $entityManager->persist($hrForm);
-            $entityManager->flush();
+            try {
+                $entityManager->persist($hrForm);
+                $entityManager->flush();
+            } catch (\Exception $e) {
+                $this->addFlash('error', $e->getMessage());
+            }
             
             return $this->redirectToRoute('app_hrform_list');
         }
@@ -53,8 +63,12 @@ class HumanResourcesFormController extends AbstractController
     #[Route('/back-office/form/{id}/delete', name: 'app_hrform_delete')]
     public function delete(HumanResourcesForm $hrForm, EntityManagerInterface $entityManager): Response
     {
-        $entityManager->remove($hrForm);
-        $entityManager->flush();
+        try {
+            $entityManager->remove($hrForm);
+            $entityManager->flush();
+        } catch (\Exception $e) {
+            $this->addFlash('error', $e->getMessage());
+        }
 
         return $this->redirectToRoute('app_hrform_list');
     }

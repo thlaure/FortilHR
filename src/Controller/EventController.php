@@ -17,9 +17,15 @@ class EventController extends AbstractController
     #[Route('/back-office/event/all', name: 'app_event_list', methods: ['GET'])]
     public function list(EventRepository $eventRepository): Response
     {
-        return $this->render('event/list.html.twig', [
-            'events' => $eventRepository->findBy([], ['startDate' => 'DESC', 'endDate' => 'DESC']),
-        ]);
+        try {
+            $events = $eventRepository->findBy([], ['startDate' => 'DESC', 'endDate' => 'DESC']);
+
+            return $this->render('event/list.html.twig', [
+                'events' => $events,
+            ]);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
     }
 
     #[Route('/back-office/event', name: 'app_event_create', methods: ['GET', 'POST'])]
@@ -39,8 +45,12 @@ class EventController extends AbstractController
                 ]);
             }
 
-            $entityManager->persist($event);
-            $entityManager->flush();
+            try {
+                $entityManager->persist($event);
+                $entityManager->flush();
+            } catch (\Exception $e) {
+                $this->addFlash('error', $e->getMessage());
+            }
             
             return $this->redirectToRoute('app_event_list');
         }
@@ -53,8 +63,12 @@ class EventController extends AbstractController
     #[Route('/back-office/event/{id}/delete', name: 'app_event_delete')]
     public function delete(Event $event, EntityManagerInterface $entityManager): Response
     {
-        $entityManager->remove($event);
-        $entityManager->flush();
+        try {
+            $entityManager->remove($event);
+            $entityManager->flush();
+        } catch (\Exception $e) {
+            $this->addFlash('error', $e->getMessage());
+        }
 
         return $this->redirectToRoute('app_event_list');
     }
