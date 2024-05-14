@@ -6,14 +6,14 @@ use App\Exception\DatabaseException;
 use App\Repository\EventRepository;
 use App\Repository\HumanResourcesFormRepository;
 use App\Repository\NotificationRepository;
-use Psr\Log\LoggerInterface;
+use Monolog\Logger;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class HomeController extends AbstractController
 {
-    public function __construct(private LoggerInterface $logger)
+    public function __construct(private Logger $logger)
     {
     }
 
