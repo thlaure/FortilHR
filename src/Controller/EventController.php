@@ -7,7 +7,7 @@ use App\Exception\DatabaseException;
 use App\Form\EventType;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class EventController extends AbstractController
 {
-    public function __construct(private Logger $logger)
+    public function __construct(private LoggerInterface $logger)
     {
     }
 
