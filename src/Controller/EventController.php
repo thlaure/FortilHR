@@ -6,6 +6,7 @@ use App\Entity\Event;
 use App\Exception\DatabaseException;
 use App\Form\EventType;
 use App\Repository\EventRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,7 +17,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class EventController extends AbstractController
 {
-    public function __construct(private LoggerInterface $logger)
+    public function __construct(private LoggerInterface $logger, private FileUploader $fileUploader)
     {
     }
 
@@ -50,6 +51,12 @@ class EventController extends AbstractController
                     'form' => $form,
                     'errors' => $errors,
                 ]);
+            }
+
+            $image = $form->get('image')->getData();
+            if ($image) {
+                $imageName = $this->fileUploader->upload($image);
+                $event->setImageName($imageName);
             }
 
             try {

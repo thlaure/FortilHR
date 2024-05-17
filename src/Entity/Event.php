@@ -36,6 +36,7 @@ class Event
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Type('string')]
+    #[Assert\Length(max: 255, maxMessage: 'The image name is not valid')]
     private ?string $imageName = null;
 
     #[ORM\Column(type: Types::TEXT)]
