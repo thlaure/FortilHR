@@ -22,6 +22,7 @@ class Event
         message: 'The event name is not valid'
     )]
     #[Assert\Length(max: 255, maxMessage: 'The event name is not valid')]
+    #[Assert\Regex(pattern: "/^[\\s\\p{Ll}\\p{Lu}\\p{M}\\-']+$/iu", message: 'The event name is not valid')]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -37,6 +38,7 @@ class Event
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Type('string')]
     #[Assert\Length(max: 255, maxMessage: 'The image name is not valid')]
+    #[Assert\Regex(pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\(\\)\\/\\+=]+$/iu", message: 'The image name is not valid')]
     private ?string $imageName = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -46,6 +48,8 @@ class Event
         message: 'The program is not valid'
     )]
     #[Assert\Length(max: 2000, maxMessage: 'The program is not valid')]
+    #[Assert\Regex(pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\r\n\\(\\)\\/°\\+=]+$/iu", message: 'The program is not valid')]
+
     private ?string $program = null;
 
     public function getId(): ?int

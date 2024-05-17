@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Document;
+use App\Entity\HumanResourcesForm;
 use App\Repository\NotificationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -21,9 +23,10 @@ class Notification
     #[Assert\NotBlank]
     #[Assert\Type(
         type: 'string',
-        message: 'The document title is not valid'
+        message: 'The notification title is not valid'
     )]
     #[Assert\Length(max: 255, maxMessage: 'The title is not valid')]
+    #[Assert\Regex(pattern: "/^[\\s\\p{Ll}\\p{Lu}\\p{M}\\-']+$/iu", message: 'The notification title is not valid')]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -33,6 +36,7 @@ class Notification
         message: 'The message is not valid'
     )]
     #[Assert\Length(max: 2000, maxMessage: 'The message is not valid')]
+    #[Assert\Regex(pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\r\n\\(\\)\\/°\\+=]+$/iu", message: 'The message is not valid')]
     private ?string $message = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -135,7 +139,7 @@ class Notification
         return $this->forms;
     }
 
-    public function addForm(Form $form): static
+    public function addForm(HumanResourcesForm $form): static
     {
         if (!$this->forms->contains($form)) {
             $this->forms->add($form);
@@ -144,7 +148,7 @@ class Notification
         return $this;
     }
 
-    public function removeForm(Form $form): static
+    public function removeForm(HumanResourcesForm $form): static
     {
         $this->forms->removeElement($form);
 

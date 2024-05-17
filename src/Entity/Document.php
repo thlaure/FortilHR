@@ -20,7 +20,8 @@ class Document
         type: 'string',
         message: 'The document title is not valid'
     )]
-    #[Assert\Length(max: 255, maxMessage: 'The title is not valid')]
+    #[Assert\Length(max: 255, maxMessage: 'The document title is not valid')]
+    #[Assert\Regex(pattern: "/^[\\s\\p{Ll}\\p{Lu}\\p{M}\\-']+$/iu", message: 'The document title is not valid')]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
@@ -30,6 +31,8 @@ class Document
         message: 'The document path is not valid'
     )]
     #[Assert\Length(max: 255, maxMessage: 'The document path is not valid')]
+    #[Assert\Regex(pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\(\\)\\/\\+=]+$/iu", message: 'The document path is not valid')]
+
     private ?string $path = null;
 
     public function getId(): ?int

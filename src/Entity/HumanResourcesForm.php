@@ -20,12 +20,13 @@ class HumanResourcesForm
         type: 'string',
         message: 'The form title is not valid'
     )]
-    #[Assert\Length(max: 255, maxMessage: 'The title is not valid')]
+    #[Assert\Length(max: 255, maxMessage: 'The form title is not valid')]
+    #[Assert\Regex(pattern: "/^[\\s\\p{Ll}\\p{Lu}\\p{M}\\-']+$/iu", message: 'The form title is not valid')]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
-    #[Assert\Url]
+    #[Assert\Url(message: 'The link is not valid')]
     #[Assert\Length(max: 255, maxMessage: 'The link is not valid')]
     private ?string $link = null;
 
