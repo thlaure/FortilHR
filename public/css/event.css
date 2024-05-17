@@ -1,0 +1,11 @@
+.event {
+
+    .event-image {
+        text-align: center;
+
+        .image {
+            max-height: 300px;
+            max-width: 100%;
+        }
+    }
+}

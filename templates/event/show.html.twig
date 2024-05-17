@@ -4,7 +4,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/event.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -23,6 +23,9 @@
         <div class="event">
             <h2 class="event-title">{{ event.name }}</h2>
             <p class="small">{{ event.startDate|date("d/m/Y H:i") }} - {{ event.endDate|date("d/m/Y H:i") }}</p>
+            <div class="event-image">
+                <img src="{{ asset("uploads/event/images/") ~ event.imageName }}" class="image" alt="Event illustration">
+            </div>
             <p class="event-description">{{ event.program }}</p>
         </div>
     </section>
