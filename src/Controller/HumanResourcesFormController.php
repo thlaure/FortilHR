@@ -14,12 +14,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/{_locale}', name: 'app_hrform_', locale: 'en')]
 
 class HumanResourcesFormController extends AbstractController
 {
-    public function __construct(private LoggerInterface $logger)
+    public function __construct(private LoggerInterface $logger, private TranslatorInterface $translator)
     {
     }
 
@@ -58,9 +59,11 @@ class HumanResourcesFormController extends AbstractController
             try {
                 $entityManager->persist($hrForm);
                 $entityManager->flush();
+
+                $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
             } catch (\Exception $e) {
                 $this->logger->error($e->getMessage());
-                $this->addFlash('error', Message::GENERIC_ERROR);
+                $this->addFlash('error', $this->translator->trans(Message::GENERIC_ERROR));
             }
             
             return $this->redirectToRoute('app_hrform_list');
@@ -77,9 +80,11 @@ class HumanResourcesFormController extends AbstractController
         try {
             $entityManager->remove($hrForm);
             $entityManager->flush();
+
+            $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
-            $this->addFlash('error', Message::GENERIC_ERROR);
+            $this->addFlash('error', $this->translator->trans(Message::GENERIC_ERROR));
         }
 
         return $this->redirectToRoute('app_hrform_list');
@@ -95,9 +100,11 @@ class HumanResourcesFormController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $entityManager->flush();
+                
+                $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
             } catch (\Exception $e) {
                 $this->logger->error($e->getMessage());
-                $this->addFlash('error', Message::GENERIC_ERROR);
+                $this->addFlash('error', $this->translator->trans(Message::GENERIC_ERROR));
             }
             
             return $this->redirectToRoute('app_hrform_list');
