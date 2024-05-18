@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Constant\Constraint;
 use App\Constant\Message;
 use App\Entity\Document;
 use App\Entity\HumanResourcesForm;
@@ -31,7 +32,7 @@ class Notification
         maxMessage: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     #[Assert\Regex(
-        pattern: "/^[\\s\\p{Ll}\\p{Lu}\\p{M}\\-']+$/iu",
+        pattern: Constraint::REGEX_TITLE,
         message: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     private ?string $title = null;
@@ -47,7 +48,7 @@ class Notification
         axMessage: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     #[Assert\Regex(
-        pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\r\n\\(\\)\\/°\\+=]+$/iu",
+        pattern: Constraint::REGEX_GENERIC_TEXT,
         message: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     private ?string $message = null;

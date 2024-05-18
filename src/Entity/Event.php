@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Constant\Constraint;
 use App\Constant\Message;
 use App\Repository\EventRepository;
 use Doctrine\DBAL\Types\Types;
@@ -27,7 +28,7 @@ class Event
         maxMessage: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     #[Assert\Regex(
-        pattern: "/^[\\s\\p{Ll}\\p{Lu}\\p{M}\\-']+$/iu",
+        pattern: Constraint::REGEX_TITLE,
         message: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     private ?string $name = null;
@@ -49,7 +50,7 @@ class Event
         maxMessage: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     #[Assert\Regex(
-        pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\(\\)\\/\\+=]+$/iu",
+        pattern: Constraint::REGEX_IMAGE,
         message: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     private ?string $imageName = null;
@@ -65,10 +66,9 @@ class Event
         maxMessage: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     #[Assert\Regex(
-        pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\r\n\\(\\)\\/°\\+=]+$/iu",
+        pattern: Constraint::REGEX_GENERIC_TEXT,
         message: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
-
     private ?string $program = null;
 
     public function getId(): ?int

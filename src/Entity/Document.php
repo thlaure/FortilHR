@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Constant\Constraint;
 use App\Constant\Message;
 use App\Repository\DocumentRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -26,7 +27,7 @@ class Document
         maxMessage: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     #[Assert\Regex(
-        pattern: "/^[\\s\\p{Ll}\\p{Lu}\\p{M}\\-']+$/iu",
+        pattern: Constraint::REGEX_TITLE,
         message: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     private ?string $title = null;
@@ -42,7 +43,7 @@ class Document
         maxMessage: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     #[Assert\Regex(
-        pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\(\\)\\/\\+=]+$/iu",
+        pattern: Constraint::REGEX_LINK,
         message: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     private ?string $path = null;
