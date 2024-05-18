@@ -15,13 +15,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+#[Route('/{_locale}', name: 'app_hrform_', locale: 'en')]
+
 class HumanResourcesFormController extends AbstractController
 {
     public function __construct(private LoggerInterface $logger)
     {
     }
 
-    #[Route('/back-office/form/all', name: 'app_hrform_list')]
+    #[Route('/back-office/form/all', name: 'list')]
     public function list(HumanResourcesFormRepository $hrFormRepository): Response
     {
         try {
@@ -36,7 +38,7 @@ class HumanResourcesFormController extends AbstractController
         }
     }
 
-    #[Route('/back-office/form/create', name: 'app_hrform_create', methods: ['GET', 'POST'])]
+    #[Route('/back-office/form/create', name: 'create')]
     public function create(EntityManagerInterface $entityManager, Request $request, ValidatorInterface $validator): Response
     {
         $hrForm = new HumanResourcesForm();
@@ -69,7 +71,7 @@ class HumanResourcesFormController extends AbstractController
         ]);
     }
 
-    #[Route('/back-office/form/{id}/delete', name: 'app_hrform_delete')]
+    #[Route('/back-office/form/{id}/delete', name: 'delete')]
     public function delete(HumanResourcesForm $hrForm, EntityManagerInterface $entityManager): Response
     {
         try {
@@ -83,7 +85,7 @@ class HumanResourcesFormController extends AbstractController
         return $this->redirectToRoute('app_hrform_list');
     }
 
-    #[Route('/back-office/form/{id}/edit', name: 'app_hrform_edit')]
+    #[Route('/back-office/form/{id}/edit', name: 'edit')]
     public function edit(HumanResourcesForm $hrForm, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(HumanResourcesFormType::class, $hrForm);

@@ -11,13 +11,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[Route('/{_locale}', name: 'app_home_', locale: 'en')]
 class HomeController extends AbstractController
 {
     public function __construct(private LoggerInterface $logger)
     {
     }
 
-    #[Route('/', name: 'app_home')]
+    #[Route('/', name: 'index')]
     public function index(NotificationRepository $notificationRepository, EventRepository $eventRepository, HumanResourcesFormRepository $hrFormRepository): Response
     {
         try {

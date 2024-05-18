@@ -16,13 +16,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+#[Route('/{_locale}', name: 'app_event_', locale: 'en')]
 class EventController extends AbstractController
 {
     public function __construct(private LoggerInterface $logger, private FileUploader $fileUploader)
     {
     }
 
-    #[Route('/back-office/event/all', name: 'app_event_list', methods: ['GET'])]
+    #[Route('/back-office/event/all', name: 'list', methods: ['GET'])]
     public function list(EventRepository $eventRepository): Response
     {
         try {
@@ -37,7 +38,7 @@ class EventController extends AbstractController
         }
     }
 
-    #[Route('/back-office/event', name: 'app_event_create', methods: ['GET', 'POST'])]
+    #[Route('/back-office/event', name: 'create')]
     public function create(EntityManagerInterface $entityManager, Request $request, ValidatorInterface $validator): Response
     {
         $event = new Event();
@@ -76,7 +77,7 @@ class EventController extends AbstractController
         ]);
     }
 
-    #[Route('/back-office/event/{id}/delete', name: 'app_event_delete')]
+    #[Route('/back-office/event/{id}/delete', name: 'delete')]
     public function delete(Event $event, EntityManagerInterface $entityManager): Response
     {
         try {
@@ -90,7 +91,7 @@ class EventController extends AbstractController
         return $this->redirectToRoute('app_event_list');
     }
 
-    #[Route('/event/{id}', name: 'app_event_show')]
+    #[Route('/event/{id}', name: 'show')]
     public function show(Event $event): Response
     {
         return $this->render('event/show.html.twig', [
@@ -98,7 +99,7 @@ class EventController extends AbstractController
         ]);
     }
 
-    #[Route('/back-office/event/{id}/edit', name: 'app_event_edit')]
+    #[Route('/back-office/event/{id}/edit', name: 'edit')]
     public function edit(Event $event, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(EventType::class, $event);
