@@ -35,7 +35,7 @@
                         <td class="table-cell">{{ hr_form.title }}</td>
                         <td class="table-cell"><a href={{ hr_form.link }}>{{ hr_form.link }}</a></td>
                         <td class="table-cell">
-                            <a class="btn btn--gradient btn--dashboard" href="#">Edit</a>
+                            <a class="btn btn--gradient btn--dashboard" href="{{ path('app_hrform_edit', {'id': hr_form.id}) }}">Edit</a>
                             <a class="btn btn--gradient btn--dashboard" href="{{ path('app_hrform_delete', {'id': hr_form.id}) }}">Delete</a>
                         </td>
                     </tr>

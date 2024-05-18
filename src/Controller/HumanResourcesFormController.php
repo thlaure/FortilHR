@@ -81,4 +81,27 @@ class HumanResourcesFormController extends AbstractController
 
         return $this->redirectToRoute('app_hrform_list');
     }
+
+    #[Route('/back-office/form/{id}/edit', name: 'app_hrform_edit')]
+    public function edit(HumanResourcesForm $hrForm, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(HumanResourcesFormType::class, $hrForm);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $entityManager->flush();
+            } catch (\Exception $e) {
+                $this->logger->error($e->getMessage());
+                $this->addFlash('error', 'An error has occurred');
+            }
+            
+            return $this->redirectToRoute('app_hrform_list');
+        }
+
+        return $this->render('hr_form/create.html.twig', [
+            'form' => $form
+        ]);
+    }
 }

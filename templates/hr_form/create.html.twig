@@ -20,8 +20,7 @@
     <section class="container">
         <h1 class="main-title">Create form</h1>
 
-        <form action="{{ path('app_hrform_create') }}" method="POST">
-            {{ form_start(form) }}
+        {{ form_start(form) }}
             {% if errors is defined %}
                 <div class="form-errors">
                     {% for error in errors %}
@@ -43,8 +42,7 @@
             <div class="form-group">
                 {{ form_widget(form.submit, {'attr': {'class': 'form-button btn btn--gradient'}}) }}
             </div>
-            {{ form_end(form) }}
-        </form>
+        {{ form_end(form) }}
     </section>
 </div>
 {% endblock %}
