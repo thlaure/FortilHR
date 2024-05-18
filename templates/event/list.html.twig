@@ -37,7 +37,7 @@
                         <td class="table-cell">{{ event.startDate|date("d/m/Y H:i") }}</td>
                         <td class="table-cell">{{ event.endDate|date("d/m/Y H:i") }}</td>
                         <td class="table-cell">
-                            <a class="btn btn--gradient btn--dashboard" href="#">Edit</a>
+                            <a class="btn btn--gradient btn--dashboard" href="{{ path('app_event_edit', {'id': event.id}) }}">Edit</a>
                             <a class="btn btn--gradient btn--dashboard" href="{{ path('app_event_delete', {'id': event.id}) }}">Delete</a>
                         </td>
                     </tr>
