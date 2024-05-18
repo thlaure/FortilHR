@@ -64,7 +64,7 @@ class EventController extends AbstractController
                 $entityManager->flush();
             } catch (\Exception $e) {
                 $this->logger->error($e->getMessage());
-                $this->addFlash('error', $e->getMessage());
+                $this->addFlash('error', 'An error has occurred');
             }
             
             return $this->redirectToRoute('app_event_list');
@@ -83,7 +83,7 @@ class EventController extends AbstractController
             $entityManager->flush();
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
-            $this->addFlash('error', $e->getMessage());
+            $this->addFlash('error', 'An error has occurred');
         }
 
         return $this->redirectToRoute('app_event_list');
