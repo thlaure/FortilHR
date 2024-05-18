@@ -1,3 +1,13 @@
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .form-group {
+        flex-basis: 16rem;
+    }
+}
+
 .form-group {
     margin-bottom: 1rem;
     
