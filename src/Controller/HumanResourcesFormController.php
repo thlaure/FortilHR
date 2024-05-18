@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Constant\Message;
 use App\Entity\HumanResourcesForm;
 use App\Exception\DatabaseException;
 use App\Form\HumanResourcesFormType;
@@ -57,7 +58,7 @@ class HumanResourcesFormController extends AbstractController
                 $entityManager->flush();
             } catch (\Exception $e) {
                 $this->logger->error($e->getMessage());
-                $this->addFlash('error', $e->getMessage());
+                $this->addFlash('error', Message::GENERIC_ERROR);
             }
             
             return $this->redirectToRoute('app_hrform_list');
@@ -76,7 +77,7 @@ class HumanResourcesFormController extends AbstractController
             $entityManager->flush();
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
-            $this->addFlash('error', $e->getMessage());
+            $this->addFlash('error', Message::GENERIC_ERROR);
         }
 
         return $this->redirectToRoute('app_hrform_list');
@@ -94,7 +95,7 @@ class HumanResourcesFormController extends AbstractController
                 $entityManager->flush();
             } catch (\Exception $e) {
                 $this->logger->error($e->getMessage());
-                $this->addFlash('error', 'An error has occurred');
+                $this->addFlash('error', Message::GENERIC_ERROR);
             }
             
             return $this->redirectToRoute('app_hrform_list');
