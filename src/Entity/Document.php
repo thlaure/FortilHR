@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Constant\Message;
 use App\Repository\DocumentRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -18,21 +19,32 @@ class Document
     #[Assert\NotBlank]
     #[Assert\Type(
         type: 'string',
-        message: 'The document title is not valid'
+        message: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
-    #[Assert\Length(max: 255, maxMessage: 'The document title is not valid')]
-    #[Assert\Regex(pattern: "/^[\\s\\p{Ll}\\p{Lu}\\p{M}\\-']+$/iu", message: 'The document title is not valid')]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: Message::GENERIC_ENTITY_FIELD_ERROR
+    )]
+    #[Assert\Regex(
+        pattern: "/^[\\s\\p{Ll}\\p{Lu}\\p{M}\\-']+$/iu",
+        message: Message::GENERIC_ENTITY_FIELD_ERROR
+    )]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Type(
         type: 'string',
-        message: 'The document path is not valid'
+        message: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
-    #[Assert\Length(max: 255, maxMessage: 'The document path is not valid')]
-    #[Assert\Regex(pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\(\\)\\/\\+=]+$/iu", message: 'The document path is not valid')]
-
+    #[Assert\Length(
+        max: 255,
+        maxMessage: Message::GENERIC_ENTITY_FIELD_ERROR
+    )]
+    #[Assert\Regex(
+        pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\(\\)\\/\\+=]+$/iu",
+        message: Message::GENERIC_ENTITY_FIELD_ERROR
+    )]
     private ?string $path = null;
 
     public function getId(): ?int

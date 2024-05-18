@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Constant\Message;
 use App\Repository\EventRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -19,10 +20,16 @@ class Event
     #[Assert\NotBlank]
     #[Assert\Type(
         type: 'string',
-        message: 'The event name is not valid'
+        message: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
-    #[Assert\Length(max: 255, maxMessage: 'The event name is not valid')]
-    #[Assert\Regex(pattern: "/^[\\s\\p{Ll}\\p{Lu}\\p{M}\\-']+$/iu", message: 'The event name is not valid')]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: Message::GENERIC_ENTITY_FIELD_ERROR
+    )]
+    #[Assert\Regex(
+        pattern: "/^[\\s\\p{Ll}\\p{Lu}\\p{M}\\-']+$/iu",
+        message: Message::GENERIC_ENTITY_FIELD_ERROR
+    )]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -37,18 +44,30 @@ class Event
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Type('string')]
-    #[Assert\Length(max: 255, maxMessage: 'The image name is not valid')]
-    #[Assert\Regex(pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\(\\)\\/\\+=]+$/iu", message: 'The image name is not valid')]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: Message::GENERIC_ENTITY_FIELD_ERROR
+    )]
+    #[Assert\Regex(
+        pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\(\\)\\/\\+=]+$/iu",
+        message: Message::GENERIC_ENTITY_FIELD_ERROR
+    )]
     private ?string $imageName = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
     #[Assert\Type(
         type: 'string',
-        message: 'The program is not valid'
+        message: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
-    #[Assert\Length(max: 2000, maxMessage: 'The program is not valid')]
-    #[Assert\Regex(pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\r\n\\(\\)\\/°\\+=]+$/iu", message: 'The program is not valid')]
+    #[Assert\Length(
+        max: 2000,
+        maxMessage: Message::GENERIC_ENTITY_FIELD_ERROR
+    )]
+    #[Assert\Regex(
+        pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\r\n\\(\\)\\/°\\+=]+$/iu",
+        message: Message::GENERIC_ENTITY_FIELD_ERROR
+    )]
 
     private ?string $program = null;
 

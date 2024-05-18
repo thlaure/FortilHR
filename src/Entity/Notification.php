@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Constant\Message;
 use App\Entity\Document;
 use App\Entity\HumanResourcesForm;
 use App\Repository\NotificationRepository;
@@ -23,20 +24,32 @@ class Notification
     #[Assert\NotBlank]
     #[Assert\Type(
         type: 'string',
-        message: 'The notification title is not valid'
+        message: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
-    #[Assert\Length(max: 255, maxMessage: 'The title is not valid')]
-    #[Assert\Regex(pattern: "/^[\\s\\p{Ll}\\p{Lu}\\p{M}\\-']+$/iu", message: 'The notification title is not valid')]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: Message::GENERIC_ENTITY_FIELD_ERROR
+    )]
+    #[Assert\Regex(
+        pattern: "/^[\\s\\p{Ll}\\p{Lu}\\p{M}\\-']+$/iu",
+        message: Message::GENERIC_ENTITY_FIELD_ERROR
+    )]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
     #[Assert\Type(
         type: 'string',
-        message: 'The message is not valid'
+        message: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
-    #[Assert\Length(max: 2000, maxMessage: 'The message is not valid')]
-    #[Assert\Regex(pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\r\n\\(\\)\\/°\\+=]+$/iu", message: 'The message is not valid')]
+    #[Assert\Length(
+        max: 2000,
+        axMessage: Message::GENERIC_ENTITY_FIELD_ERROR
+    )]
+    #[Assert\Regex(
+        pattern: "/^[\\p{Ll}\\p{Lu}\\p{M}\\p{P}\\p{Sc}\\p{N}\\s\r\n\\(\\)\\/°\\+=]+$/iu",
+        message: Message::GENERIC_ENTITY_FIELD_ERROR
+    )]
     private ?string $message = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
