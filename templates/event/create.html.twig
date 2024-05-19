@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Back Office - Event{% endblock %}
+{% block title %}Back Office - {{ 'event'|trans }}{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -14,11 +14,11 @@
             <a class="stretched-link" href="{{ path('app_backoffice_index') }}">
                 <img class="svg" src="{{ asset('svg/arrow-left-solid.svg') }}" alt="Left arrow SVG" width="40">
             </a>
-        </div>
+        </div> 
     </div>
 
     <section class="container">
-        <h1 class="main-title">Create event</h1>
+        <h1 class="main-title">{{ 'create_event'|trans }}</h1>
 
         {{ form_start(form) }}
             {% if errors is defined %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Back Office - Event{% endblock %}
+{% block title %}Back Office - {{ 'event'|trans }}{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -18,17 +18,17 @@
     </div>
 
     <section class="container">
-        <h1 class="main-title">Events</h1>
+        <h1 class="main-title">{{ 'events'|trans }}</h1>
 
         {% include 'flash.html.twig' %}
 
         <table class="table">
             <thead>
                 <tr>
-                    <th class="table-cell">Name</th>
-                    <th class="table-cell">Start</th>
-                    <th class="table-cell">End</th>
-                    <th class="table-cell">Actions</th>
+                    <th class="table-cell">{{ 'name'|trans }}</th>
+                    <th class="table-cell">{{ 'start'|trans }}</th>
+                    <th class="table-cell">{{ 'end'|trans }}</th>
+                    <th class="table-cell">{{ 'actions'|trans }}</th>
                 </tr>
             </thead>
 
@@ -39,8 +39,8 @@
                         <td class="table-cell">{{ event.startDate|date("d/m/Y H:i") }}</td>
                         <td class="table-cell">{{ event.endDate|date("d/m/Y H:i") }}</td>
                         <td class="table-cell">
-                            <a class="btn btn--gradient btn--dashboard" href="{{ path('app_event_edit', {'id': event.id}) }}">Edit</a>
-                            <a class="btn btn--gradient btn--dashboard" href="{{ path('app_event_delete', {'id': event.id}) }}">Delete</a>
+                            <a class="btn btn--gradient btn--dashboard" href="{{ path('app_event_edit', {'id': event.id}) }}">{{ 'edit'|trans }}</a>
+                            <a class="btn btn--gradient btn--dashboard" href="{{ path('app_event_delete', {'id': event.id}) }}">{{ 'delete'|trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}

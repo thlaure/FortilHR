@@ -1,0 +1,26 @@
+name: Nom
+start: Début
+end: Fin
+actions: Actions
+edit: Éditer
+delete: Supprimer
+post: Créer
+list: Liste
+start_date: Date de début
+end_date: Date de fin
+submit: Soumettre
+
+success: Succès
+an_error_occurred: Une erreur est survenue
+data_is_not_valid: Les données ne sont pas valides
+
+create_event: Créer un évènement
+events: Évènements
+event: Évènement
+program: Programme
+image: Image
+
+form: Formulaire
+create_form: Créer un formulaire
+form_title: Titre
+form_link: Lien

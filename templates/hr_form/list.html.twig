@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Back Office - Form{% endblock %}
+{% block title %}Back Office - {{ 'form'|trans }}{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -18,16 +18,16 @@
     </div>
 
     <section class="container">
-        <h1 class="main-title">Forms</h1>
+        <h1 class="main-title">{{ 'forms'|trans }}</h1>
 
         {% include 'flash.html.twig' %}
 
         <table class="table">
             <thead>
                 <tr>
-                    <th class="table-cell">Title</th>
-                    <th class="table-cell">Link</th>
-                    <th class="table-cell">Actions</th>
+                    <th class="table-cell">{{ 'title'|trans }}</th>
+                    <th class="table-cell">{{ 'link'|trans }}</th>
+                    <th class="table-cell">{{ 'actions'|trans }}</th>
                 </tr>
             </thead>
 
@@ -37,8 +37,8 @@
                         <td class="table-cell">{{ hr_form.title }}</td>
                         <td class="table-cell"><a href={{ hr_form.link }}>{{ hr_form.link }}</a></td>
                         <td class="table-cell">
-                            <a class="btn btn--gradient btn--dashboard" href="{{ path('app_hrform_edit', {'id': hr_form.id}) }}">Edit</a>
-                            <a class="btn btn--gradient btn--dashboard" href="{{ path('app_hrform_delete', {'id': hr_form.id}) }}">Delete</a>
+                            <a class="btn btn--gradient btn--dashboard" href="{{ path('app_hrform_edit', {'id': hr_form.id}) }}">{{ 'edit'|trans }}</a>
+                            <a class="btn btn--gradient btn--dashboard" href="{{ path('app_hrform_delete', {'id': hr_form.id}) }}">{{ 'delete'|trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}

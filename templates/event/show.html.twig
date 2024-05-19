@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} - Program{% endblock %}
+{% block title %} - {{ 'program'|trans }}{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -18,7 +18,7 @@
     </div>
 
     <section class="container">
-        <h1 class="main-title">Program</h1>
+        <h1 class="main-title">{{ 'program'|trans }}</h1>
 
         <div class="event">
             <h2 class="event-title">{{ event.name }}</h2>

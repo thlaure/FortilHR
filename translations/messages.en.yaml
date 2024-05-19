@@ -1,0 +1,26 @@
+name: Name
+start: Start
+end: End
+actions: Actions
+edit: Edit
+delete: Delete
+post: Post
+list: List
+start_date: Start date
+end_date: End date
+submit: Submit
+
+success: Success
+an_error_occurred: An error occurred
+data_is_not_valid: The data is not valid
+
+create_event: Create an event
+events: Events
+event: Event
+program: Program
+image: Image
+
+form: Form
+create_form: Create form
+form_title: Form title
+form_link: Form link

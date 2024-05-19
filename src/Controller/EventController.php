@@ -105,13 +105,21 @@ class EventController extends AbstractController
     }
 
     #[Route('/back-office/event/{id}/edit', name: 'edit')]
-    public function edit(Event $event, Request $request, EntityManagerInterface $entityManager): Response
+    public function edit(Event $event, Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
     {
         $form = $this->createForm(EventType::class, $event);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $errors = $validator->validate($event);
+            if (count($errors) > 0) {
+                return $this->render('event/create.html.twig', [
+                    'form' => $form,
+                    'errors' => $errors,
+                ]);
+            }
+
             try {
                 $entityManager->flush();
 
