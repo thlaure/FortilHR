@@ -17,7 +17,7 @@ class Document
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: Message::GENERIC_ENTITY_FIELD_ERROR)]
     #[Assert\Type(
         type: 'string',
         message: Message::GENERIC_ENTITY_FIELD_ERROR
@@ -33,7 +33,7 @@ class Document
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: Message::GENERIC_ENTITY_FIELD_ERROR)]
     #[Assert\Type(
         type: 'string',
         message: Message::GENERIC_ENTITY_FIELD_ERROR

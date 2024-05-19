@@ -22,7 +22,7 @@ class Notification
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: Message::GENERIC_ENTITY_FIELD_ERROR)]
     #[Assert\Type(
         type: 'string',
         message: Message::GENERIC_ENTITY_FIELD_ERROR
@@ -54,8 +54,8 @@ class Notification
     private ?string $message = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\DateTime]
-    #[Assert\GreaterThanOrEqual('today')]
+    #[Assert\Type('\DateTimeInterface', message: Message::GENERIC_ENTITY_FIELD_ERROR)]
+    #[Assert\GreaterThanOrEqual('today', message: Message::GENERIC_ENTITY_FIELD_ERROR)]
     private ?\DateTimeInterface $sendDate = null;
 
     /**
@@ -71,7 +71,7 @@ class Notification
     private Collection $forms;
 
     #[ORM\Column]
-    #[Assert\Type('bool')]
+    #[Assert\Type('bool', message: Message::GENERIC_ENTITY_FIELD_ERROR)]
     private ?bool $isRead = null;
 
     public function __construct()

@@ -18,7 +18,7 @@ class Event
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: Message::GENERIC_ENTITY_FIELD_ERROR)]
     #[Assert\Type(
         type: 'string',
         message: Message::GENERIC_ENTITY_FIELD_ERROR
@@ -34,13 +34,13 @@ class Event
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\Type('\DateTimeInterface')]
-    #[Assert\GreaterThanOrEqual('today')]
+    #[Assert\Type('\DateTimeInterface', message: Message::GENERIC_ENTITY_FIELD_ERROR)]
+    #[Assert\GreaterThanOrEqual('today', message: Message::GENERIC_ENTITY_FIELD_ERROR)]
     private ?\DateTimeInterface $startDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Assert\Type('\DateTimeInterface')]
-    #[Assert\GreaterThanOrEqual('today')]
+    #[Assert\Type('\DateTimeInterface', message: Message::GENERIC_ENTITY_FIELD_ERROR)]
+    #[Assert\GreaterThanOrEqual('today', message: Message::GENERIC_ENTITY_FIELD_ERROR)]
     private ?\DateTimeInterface $endDate = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -56,7 +56,7 @@ class Event
     private ?string $imageName = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: Message::GENERIC_ENTITY_FIELD_ERROR)]
     #[Assert\Type(
         type: 'string',
         message: Message::GENERIC_ENTITY_FIELD_ERROR
