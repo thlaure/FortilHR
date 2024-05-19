@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-#[Route('/{_locale}', name: 'app_hrform_', locale: 'en')]
+#[Route('/{_locale}', name: 'app_hrform_', locale: 'fr')]
 
 class HumanResourcesFormController extends AbstractController
 {

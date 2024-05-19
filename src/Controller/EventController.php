@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-#[Route('/{_locale}', name: 'app_event_', locale: 'en')]
+#[Route('/{_locale}', name: 'app_event_', locale: 'fr')]
 class EventController extends AbstractController
 {
     public function __construct(private LoggerInterface $logger, private FileUploader $fileUploader, private TranslatorInterface $translator)
