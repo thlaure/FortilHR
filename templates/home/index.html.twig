@@ -17,16 +17,16 @@
     </div>
 
     <section class="container">
-        <h1 class="main-title">Welcome to the Fortil Event app</h1>
+        <h1 class="main-title">{{ 'welcome_to_the_app'|trans }}</h1>
 
         <div class="qrcode-container">
             <img class="qrcode-img" src="{{ qr_code_data_uri(qrcode_data) }}" alt="QR Code" width="200">
         </div>
 
         <div class="btn-container">
-            <a class="btn btn--gradient" href="{{ path('app_event_show', {'id': event.id}) }}">Program</a>
+            <a class="btn btn--gradient" href="{{ path('app_event_show', {'id': event.id}) }}">{{ 'program'|trans }}</a>
             {% if hr_form is not null and hr_form.link %}
-                <a class="btn btn--gradient" href="{{ hr_form.link }}">Form</a>
+                <a class="btn btn--gradient" href="{{ hr_form.link }}">{{ 'form'|trans }}</a>
             {% endif %}
         </div>
     </section>

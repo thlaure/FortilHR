@@ -24,7 +24,7 @@ class HumanResourcesFormController extends AbstractController
     {
     }
 
-    #[Route('/back-office/form/all', name: 'list')]
+    #[Route('/back-office/form/list', name: 'list')]
     public function list(HumanResourcesFormRepository $hrFormRepository): Response
     {
         try {

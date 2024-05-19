@@ -24,7 +24,7 @@ class EventController extends AbstractController
     {
     }
 
-    #[Route('/back-office/event/all', name: 'list', methods: ['GET'])]
+    #[Route('/back-office/event/list', name: 'list', methods: ['GET'])]
     public function list(EventRepository $eventRepository): Response
     {
         try {
@@ -39,7 +39,7 @@ class EventController extends AbstractController
         }
     }
 
-    #[Route('/back-office/event', name: 'create')]
+    #[Route('/back-office/event/create', name: 'create')]
     public function create(EntityManagerInterface $entityManager, Request $request, ValidatorInterface $validator): Response
     {
         $event = new Event();
