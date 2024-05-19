@@ -1,4 +1,6 @@
 name: Nom
+title: Titre
+link: Lien
 start: Début
 end: Fin
 actions: Actions
@@ -21,8 +23,7 @@ program: Programme
 image: Image
 
 form: Formulaire
+forms: Formulaires
 create_form: Créer un formulaire
-form_title: Titre
-form_link: Lien
 
 welcome_to_the_app: Bienvenue sur Fortil Event

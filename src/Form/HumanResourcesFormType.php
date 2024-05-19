@@ -21,13 +21,13 @@ class HumanResourcesFormType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => $this->translator->trans('form_title')
+                'label' => $this->translator->trans('title')
             ])
             ->add('link', UrlType::class, [
-                'label' => $this->translator->trans('form_link')
+                'label' => $this->translator->trans('link')
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'submit'
+                'label' => $this->translator->trans('submit')
             ])
         ;
     }

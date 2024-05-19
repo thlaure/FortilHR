@@ -20,15 +20,9 @@
     <section class="container">
         <h1 class="main-title">{{ 'create_event'|trans }}</h1>
 
-        {{ form_start(form) }}
-            {% if errors is defined %}
-                <div class="form-errors">
-                    {% for error in errors %}
-                        <p class="error"><span class="badge-error">error</span> {{ error.message }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
+        {% include 'flash.html.twig' %}
 
+        {{ form_start(form) }}
             <div class="form-group">
                 {{ form_label(form.name) }}
                 {{ form_widget(form.name, {'attr': {'class': 'form-input form-input--text'}}) }}

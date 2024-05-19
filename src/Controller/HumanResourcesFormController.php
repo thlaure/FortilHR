@@ -47,26 +47,27 @@ class HumanResourcesFormController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $errors = $validator->validate($form);
+        if ($form->isSubmitted()) {
+            $errors = $validator->validate($hrForm);
             if (count($errors) > 0) {
-                return $this->render('hr_form/create.html.twig', [
-                    'form' => $form,
-                    'errors' => $errors,
-                ]);
+                $this->addFlash('error', $this->translator->trans($errors[0]->getMessage()));
+
+                return $this->redirectToRoute('app_hrform_create');
             }
 
-            try {
-                $entityManager->persist($hrForm);
-                $entityManager->flush();
+            if ($form->isValid()) {
+                try {
+                    $entityManager->persist($hrForm);
+                    $entityManager->flush();
+    
+                    $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
+                } catch (\Exception $e) {
+                    $this->logger->error($e->getMessage());
+                    $this->addFlash('error', $this->translator->trans(Message::GENERIC_ERROR));
+                }
 
-                $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
-            } catch (\Exception $e) {
-                $this->logger->error($e->getMessage());
-                $this->addFlash('error', $this->translator->trans(Message::GENERIC_ERROR));
+                return $this->redirectToRoute('app_hrform_list');
             }
-            
-            return $this->redirectToRoute('app_hrform_list');
         }
 
         return $this->render('hr_form/create.html.twig', [
@@ -91,23 +92,32 @@ class HumanResourcesFormController extends AbstractController
     }
 
     #[Route('/back-office/form/{id}/edit', name: 'edit')]
-    public function edit(HumanResourcesForm $hrForm, Request $request, EntityManagerInterface $entityManager): Response
+    public function edit(HumanResourcesForm $hrForm, Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
     {
         $form = $this->createForm(HumanResourcesFormType::class, $hrForm);
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            try {
-                $entityManager->flush();
-                
-                $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
-            } catch (\Exception $e) {
-                $this->logger->error($e->getMessage());
-                $this->addFlash('error', $this->translator->trans(Message::GENERIC_ERROR));
+        if ($form->isSubmitted()) {
+            $errors = $validator->validate($hrForm);
+            if (count($errors) > 0) {
+                $this->addFlash('error', $this->translator->trans($errors[0]->getMessage()));
+
+                return $this->redirectToRoute('app_hrform_edit', ['id' => $hrForm->getId()]);
             }
-            
-            return $this->redirectToRoute('app_hrform_list');
+
+            if ($form->isValid()) {
+                try {
+                    $entityManager->flush();
+                    
+                    $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
+                } catch (\Exception $e) {
+                    $this->logger->error($e->getMessage());
+                    $this->addFlash('error', $this->translator->trans(Message::GENERIC_ERROR));
+                }
+
+                return $this->redirectToRoute('app_hrform_list');
+            }
         }
 
         return $this->render('hr_form/create.html.twig', [

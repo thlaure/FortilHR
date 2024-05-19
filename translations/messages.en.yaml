@@ -1,4 +1,6 @@
 name: Name
+title: Title
+link: Link
 start: Start
 end: End
 actions: Actions
@@ -21,8 +23,7 @@ program: Program
 image: Image
 
 form: Form
+forms: Forms
 create_form: Create form
-form_title: Form title
-form_link: Form link
 
 welcome_to_the_app: Welcome to the Fortil Event app

@@ -47,32 +47,33 @@ class EventController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             $errors = $validator->validate($event);
             if (count($errors) > 0) {
-                return $this->render('event/create.html.twig', [
-                    'form' => $form,
-                    'errors' => $errors,
-                ]);
+                $this->addFlash('error', $this->translator->trans($errors[0]->getMessage()));
+
+                return $this->redirectToRoute('app_event_create');
             }
 
-            $image = $form->get('image')->getData();
-            if ($image) {
-                $imageName = $this->fileUploader->upload($image);
-                $event->setImageName($imageName);
-            }
+            if ($form->isValid()) {
+                $image = $form->get('image')->getData();
+                if ($image) {
+                    $imageName = $this->fileUploader->upload($image);
+                    $event->setImageName($imageName);
+                }
+    
+                try {
+                    $entityManager->persist($event);
+                    $entityManager->flush();
+                    
+                    $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
+                } catch (\Exception $e) {
+                    $this->logger->error($e->getMessage());
+                    $this->addFlash('error', $this->translator->trans(Message::GENERIC_ERROR));
+                }
 
-            try {
-                $entityManager->persist($event);
-                $entityManager->flush();
-                
-                $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
-            } catch (\Exception $e) {
-                $this->logger->error($e->getMessage());
-                $this->addFlash('error', $this->translator->trans(Message::GENERIC_ERROR));
+                return $this->redirectToRoute('app_event_list');
             }
-            
-            return $this->redirectToRoute('app_event_list');
         }
 
         return $this->render('event/create.html.twig', [
@@ -111,25 +112,26 @@ class EventController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             $errors = $validator->validate($event);
             if (count($errors) > 0) {
-                return $this->render('event/create.html.twig', [
-                    'form' => $form,
-                    'errors' => $errors,
-                ]);
+                $this->addFlash('error', $this->translator->trans($errors[0]->getMessage()));
+
+                return $this->redirectToRoute('app_event_edit', ['id' => $event->getId()]);
             }
 
-            try {
-                $entityManager->flush();
+            if ($form->isValid()) {
+                try {
+                    $entityManager->flush();
+    
+                    $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
+                } catch (\Exception $e) {
+                    $this->logger->error($e->getMessage());
+                    $this->addFlash('error', $this->translator->trans(Message::GENERIC_ERROR));
+                }
 
-                $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
-            } catch (\Exception $e) {
-                $this->logger->error($e->getMessage());
-                $this->addFlash('error', $this->translator->trans(Message::GENERIC_ERROR));
+                return $this->redirectToRoute('app_event_list');
             }
-            
-            return $this->redirectToRoute('app_event_list');
         }
 
         return $this->render('event/create.html.twig', [
