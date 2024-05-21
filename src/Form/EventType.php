@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Constant\Constraint;
 use App\Entity\Event;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -41,10 +42,8 @@ class EventType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '5M',
-                        'mimeTypes' => [
-                            'image/*'
-                        ]
+                        'maxSize' => Constraint::IMAGE_MAX_FILE_SIZE,
+                        'mimeTypes' => Constraint::IMAGE_ALLOWED_MIME_TYPES
                     ])
                 ]
             ])
