@@ -7,6 +7,7 @@ use App\Entity\Event;
 use App\Exception\DatabaseException;
 use App\Form\EventType;
 use App\Repository\EventRepository;
+use App\Service\FileChecker;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
@@ -40,7 +41,7 @@ class EventController extends AbstractController
     }
 
     #[Route('/back-office/event/create', name: 'create')]
-    public function create(EntityManagerInterface $entityManager, Request $request, ValidatorInterface $validator): Response
+    public function create(EntityManagerInterface $entityManager, Request $request, ValidatorInterface $validator, FileChecker $fileChecker): Response
     {
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
@@ -57,7 +58,7 @@ class EventController extends AbstractController
 
             if ($form->isValid()) {
                 $image = $form->get('image')->getData();
-                if ($image) {
+                if ($image && $fileChecker->checkImageIsValid($image)) {
                     $imageName = $this->fileUploader->upload($image);
                     $event->setImageName($imageName);
                 }
