@@ -43,7 +43,7 @@ class Notification
     )]
     #[Assert\Length(
         max: 2000,
-        axMessage: Message::GENERIC_ENTITY_FIELD_ERROR
+        maxMessage: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     #[Assert\Regex(
         pattern: Constraint::REGEX_GENERIC_TEXT,
@@ -144,7 +144,7 @@ class Notification
     }
 
     /**
-     * @return Collection<int, Form>
+     * @return Collection<int, HumanResourcesForm>
      */
     public function getForms(): Collection
     {

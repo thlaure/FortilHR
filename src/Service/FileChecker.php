@@ -13,6 +13,9 @@ class FileChecker
     ) {
     }
 
+    /**
+     * @param array<string> $allowedExtensions
+     */
     public function isExtensionValid(string $fileName, array $allowedExtensions): bool
     {
         $extension = pathinfo($fileName, PATHINFO_EXTENSION);
@@ -25,6 +28,9 @@ class FileChecker
         return true;
     }
 
+    /**
+     * @param array<string> $allowedMimeTypes
+     */
     public function isMimeTypeValid(string $fileName, array $allowedMimeTypes): bool
     {
         $mimeType = mime_content_type($fileName);
@@ -48,11 +54,14 @@ class FileChecker
         return true;
     }
 
+    /**
+     * @param string[] $allowedMimeTypesByExtension
+     */
     public function isMimeTypeCorrespondingToExtension(UploadedFile $file, array $allowedMimeTypesByExtension): bool
     {
         $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
         $mimeType = $file->getMimeType();
-        if (!in_array($mimeType, $allowedMimeTypesByExtension[$extension])) {
+        if ($mimeType !== $allowedMimeTypesByExtension[$extension]) {
             $this->logger->error('Mime type and extension not matching: '.$mimeType);
 
             return false;
