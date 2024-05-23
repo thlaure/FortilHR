@@ -4,6 +4,7 @@ link: Link
 start: Start
 end: End
 actions: Actions
+show: Show
 edit: Edit
 delete: Delete
 post: Post
