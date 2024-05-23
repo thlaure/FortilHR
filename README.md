@@ -54,3 +54,7 @@ Use the Fortil font: [GT Eesti](https://befonts.com/gt-eesti-font-family.html)
 ### CS Fixer
 Run with: ```vendor/bin/php-cs-fixer fix```
 More information [here](https://cs.symfony.com/)
+
+### PHPStan
+Run with: ```vendor/bin/phpstan analyse src --level=9```
+More information [here](https://phpstan.org/user-guide/getting-started)
