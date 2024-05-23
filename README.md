@@ -48,3 +48,8 @@ Connection :
 
 #### Fonts
 Use the Fortil font: [GT Eesti](https://befonts.com/gt-eesti-font-family.html)
+
+## Project tools
+
+### CS Fixer
+Run with: ```vendor/bin/php-cs-fixer fix```
