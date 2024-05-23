@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -49,7 +50,9 @@ class HumanResourcesFormController extends AbstractController
         if ($form->isSubmitted()) {
             $errors = $validator->validate($hrForm);
             if (count($errors) > 0) {
-                $this->addFlash('error', $this->translator->trans($errors[0]->getMessage()));
+                /** @var ConstraintViolation $error */
+                $error = $errors[0];
+                $this->addFlash('error', $this->translator->trans($error->getMessage()));
 
                 return $this->redirectToRoute('app_hrform_create');
             }
@@ -100,7 +103,9 @@ class HumanResourcesFormController extends AbstractController
         if ($form->isSubmitted()) {
             $errors = $validator->validate($hrForm);
             if (count($errors) > 0) {
-                $this->addFlash('error', $this->translator->trans($errors[0]->getMessage()));
+                /** @var ConstraintViolation $error */
+                $error = $errors[0];
+                $this->addFlash('error', $this->translator->trans($error->getMessage()));
 
                 return $this->redirectToRoute('app_hrform_edit', ['id' => $hrForm->getId()]);
             }

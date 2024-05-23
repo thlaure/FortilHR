@@ -12,9 +12,11 @@ use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -51,12 +53,15 @@ class EventController extends AbstractController
         if ($form->isSubmitted()) {
             $errors = $validator->validate($event);
             if (count($errors) > 0) {
-                $this->addFlash('error', $this->translator->trans($errors[0]->getMessage()));
+                /** @var ConstraintViolation $error */
+                $error = $errors[0];
+                $this->addFlash('error', $this->translator->trans($error->getMessage()));
 
                 return $this->redirectToRoute('app_event_create');
             }
 
             if ($form->isValid()) {
+                /** @var ?UploadedFile $image */
                 $image = $form->get('image')->getData();
                 if ($image && $fileChecker->checkImageIsValid($image)) {
                     $imageName = $this->fileUploader->upload($image);
@@ -116,7 +121,9 @@ class EventController extends AbstractController
         if ($form->isSubmitted()) {
             $errors = $validator->validate($event);
             if (count($errors) > 0) {
-                $this->addFlash('error', $this->translator->trans($errors[0]->getMessage()));
+                /** @var ConstraintViolation $error */
+                $error = $errors[0];
+                $this->addFlash('error', $this->translator->trans($error->getMessage()));
 
                 return $this->redirectToRoute('app_event_edit', ['id' => $event->getId()]);
             }
