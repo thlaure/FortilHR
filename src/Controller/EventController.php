@@ -62,11 +62,11 @@ class EventController extends AbstractController
                     $imageName = $this->fileUploader->upload($image);
                     $event->setImageName($imageName);
                 }
-    
+
                 try {
                     $entityManager->persist($event);
                     $entityManager->flush();
-                    
+
                     $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
                 } catch (\Exception $e) {
                     $this->logger->error($e->getMessage());
@@ -78,7 +78,7 @@ class EventController extends AbstractController
         }
 
         return $this->render('event/create.html.twig', [
-            'form' => $form
+            'form' => $form,
         ]);
     }
 
@@ -124,7 +124,7 @@ class EventController extends AbstractController
             if ($form->isValid()) {
                 try {
                     $entityManager->flush();
-    
+
                     $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
                 } catch (\Exception $e) {
                     $this->logger->error($e->getMessage());
@@ -136,7 +136,7 @@ class EventController extends AbstractController
         }
 
         return $this->render('event/create.html.twig', [
-            'form' => $form
+            'form' => $form,
         ]);
     }
 }

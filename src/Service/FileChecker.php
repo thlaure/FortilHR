@@ -68,7 +68,7 @@ class FileChecker
         $mimeTypeIsValid = $this->isMimeTypeValid($fileName, Constraint::IMAGE_ALLOWED_MIME_TYPES);
         $sizeIsValid = $this->isSizeValid($file, Constraint::IMAGE_MAX_FILE_SIZE);
         $mimeTypeCorrespondToExtension = $this->isMimeTypeCorrespondingToExtension($file, Constraint::IMAGE_ALLOWED_MIME_TYPE_BY_EXTENSION);
-        
+
         if (!$extensionIsValid || !$mimeTypeIsValid || !$sizeIsValid || !$mimeTypeCorrespondToExtension) {
             return false;
         }

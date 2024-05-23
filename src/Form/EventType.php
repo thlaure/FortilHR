@@ -25,16 +25,16 @@ class EventType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => $this->translator->trans('name')
+                'label' => $this->translator->trans('name'),
             ])
             ->add('startDate', DateTimeType::class, [
-                'label' => $this->translator->trans('start_date')
+                'label' => $this->translator->trans('start_date'),
             ])
             ->add('endDate', DateTimeType::class, [
-                'label' => $this->translator->trans('end_date')
+                'label' => $this->translator->trans('end_date'),
             ])
             ->add('program', TextareaType::class, [
-                'label' => $this->translator->trans('program')
+                'label' => $this->translator->trans('program'),
             ])
             ->add('image', FileType::class, [
                 'label' => $this->translator->trans('image'),
@@ -43,12 +43,12 @@ class EventType extends AbstractType
                 'constraints' => [
                     new File([
                         'maxSize' => Constraint::IMAGE_MAX_FILE_SIZE,
-                        'mimeTypes' => Constraint::IMAGE_ALLOWED_MIME_TYPES
-                    ])
-                ]
+                        'mimeTypes' => Constraint::IMAGE_ALLOWED_MIME_TYPES,
+                    ]),
+                ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'submit'
+                'label' => 'submit',
             ])
         ;
     }

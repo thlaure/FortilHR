@@ -4,8 +4,6 @@ namespace App\Entity;
 
 use App\Constant\Constraint;
 use App\Constant\Message;
-use App\Entity\Document;
-use App\Entity\HumanResourcesForm;
 use App\Repository\NotificationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

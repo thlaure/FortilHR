@@ -17,7 +17,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/{_locale}', name: 'app_hrform_', locale: 'fr')]
-
 class HumanResourcesFormController extends AbstractController
 {
     public function __construct(private LoggerInterface $logger, private TranslatorInterface $translator)
@@ -59,7 +58,7 @@ class HumanResourcesFormController extends AbstractController
                 try {
                     $entityManager->persist($hrForm);
                     $entityManager->flush();
-    
+
                     $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
                 } catch (\Exception $e) {
                     $this->logger->error($e->getMessage());
@@ -71,7 +70,7 @@ class HumanResourcesFormController extends AbstractController
         }
 
         return $this->render('hr_form/create.html.twig', [
-            'form' => $form
+            'form' => $form,
         ]);
     }
 
@@ -109,7 +108,7 @@ class HumanResourcesFormController extends AbstractController
             if ($form->isValid()) {
                 try {
                     $entityManager->flush();
-                    
+
                     $this->addFlash('success', $this->translator->trans(Message::GENERIC_SUCCESS));
                 } catch (\Exception $e) {
                     $this->logger->error($e->getMessage());
@@ -121,7 +120,7 @@ class HumanResourcesFormController extends AbstractController
         }
 
         return $this->render('hr_form/create.html.twig', [
-            'form' => $form
+            'form' => $form,
         ]);
     }
 }

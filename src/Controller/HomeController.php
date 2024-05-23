@@ -26,7 +26,7 @@ class HomeController extends AbstractController
             $unreadNotifications = $notificationRepository->findBy(['isRead' => false]);
             $event = $eventRepository->findOneBy([], ['startDate' => 'desc']);
             $hrForm = $hrFormRepository->findOneBy([], ['id' => 'desc']);
-    
+
             return $this->render('home/index.html.twig', [
                 'qrcode_data' => hash('md5', $email.time()),
                 'unread_notifications' => $unreadNotifications,
