@@ -128,17 +128,6 @@ body {
     }
 }
 
-.error {
-    color: #f00;
-}
-
-.badge-error {
-    background-color: #f00;
-    color: #fff;
-    padding: .2rem;
-    border-radius: 6px;
-}
-
 .small {
     font-size: .8rem;
     color: #7e7e7e;
