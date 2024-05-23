@@ -31,9 +31,9 @@ class FileChecker
     /**
      * @param array<string> $allowedMimeTypes
      */
-    public function isMimeTypeValid(string $fileName, array $allowedMimeTypes): bool
+    public function isMimeTypeValid(UploadedFile $file, array $allowedMimeTypes): bool
     {
-        $mimeType = mime_content_type($fileName);
+        $mimeType = $file->getMimeType();
         if (!in_array($mimeType, $allowedMimeTypes)) {
             $this->logger->error('Mime type not allowed: '.$mimeType);
 
@@ -74,7 +74,7 @@ class FileChecker
     {
         $fileName = $file->getClientOriginalName();
         $extensionIsValid = $this->isExtensionValid($fileName, Constraint::IMAGE_ALLOWED_EXTENSIONS);
-        $mimeTypeIsValid = $this->isMimeTypeValid($fileName, Constraint::IMAGE_ALLOWED_MIME_TYPES);
+        $mimeTypeIsValid = $this->isMimeTypeValid($file, Constraint::IMAGE_ALLOWED_MIME_TYPES);
         $sizeIsValid = $this->isSizeValid($file, Constraint::IMAGE_MAX_FILE_SIZE);
         $mimeTypeCorrespondToExtension = $this->isMimeTypeCorrespondingToExtension($file, Constraint::IMAGE_ALLOWED_MIME_TYPE_BY_EXTENSION);
 
