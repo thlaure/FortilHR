@@ -60,6 +60,15 @@ class EventController extends AbstractController
                 return $this->redirectToRoute('app_event_create');
             }
 
+            $formErrors = $form->getErrors(true);
+            if ($formErrors->count() > 0) {
+                foreach ($formErrors as $formError) {
+                    $this->addFlash('error', $this->translator->trans($formError->getMessage()));
+                }
+
+                return $this->redirectToRoute('app_event_create');
+            }
+
             if ($form->isValid()) {
                 /** @var ?UploadedFile $image */
                 $image = $form->get('image')->getData();

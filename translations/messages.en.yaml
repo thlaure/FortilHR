@@ -16,6 +16,7 @@ submit: Submit
 success: Success
 an_error_occurred: An error occurred
 data_is_not_valid: The data is not valid
+file_is_not_valid: The file is not valid
 
 create_event: Create an event
 events: Events
