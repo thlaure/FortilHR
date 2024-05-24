@@ -54,15 +54,17 @@ class EventController extends AbstractController
         if ($form->isSubmitted()) {
             $errors = $validator->validate($event);
             $formErrors = $form->getErrors(true);
-            if (!empty($errors) || count($formErrors) > 0) {
+            if (count($errors) > 0 || count($formErrors) > 0) {
                 foreach ($errors as $error) {
-                    /** @var ConstraintViolation $error */
-                    $this->addFlash('error', $this->translator->trans($error->getMessage()));
+                    if ($error instanceof ConstraintViolation) {
+                        $this->addFlash('error', $this->translator->trans($error->getMessage()));
+                    }
                 }
 
                 foreach ($formErrors as $formError) {
-                    /** @var FormError $formError */
-                    $this->addFlash('error', $this->translator->trans($formError->getMessage()));
+                    if ($formError instanceof FormError) {
+                        $this->addFlash('error', $this->translator->trans($formError->getMessage()));
+                    }
                 }
 
                 return $this->redirectToRoute('app_event_create');
@@ -128,10 +130,10 @@ class EventController extends AbstractController
 
         if ($form->isSubmitted()) {
             $errors = $validator->validate($event);
-            if (!empty($errors)) {
-                /** @var ConstraintViolation $error */
-                $error = $errors[0];
-                $this->addFlash('error', $this->translator->trans($error->getMessage()));
+            if (count($errors) > 0) {
+                if ($errors[0] instanceof ConstraintViolation) {
+                    $this->addFlash('error', $this->translator->trans($errors[0]->getMessage()));
+                }
 
                 return $this->redirectToRoute('app_event_edit', ['id' => $event->getId()]);
             }
