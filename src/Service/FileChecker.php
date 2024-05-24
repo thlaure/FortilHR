@@ -45,7 +45,7 @@ class FileChecker
 
     public function isSizeValid(UploadedFile $file, int $maxFileSize): bool
     {
-        if ($file->getSize() > $maxFileSize) {
+        if ($file->getSize() > $maxFileSize || 0 === $file->getSize()) {
             $this->logger->error('File too large: '.$file->getSize());
 
             return false;
@@ -59,7 +59,7 @@ class FileChecker
      */
     public function isMimeTypeCorrespondingToExtension(UploadedFile $file, array $allowedMimeTypesByExtension): bool
     {
-        $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+        $extension = $file->getClientOriginalExtension();
         $mimeType = $file->getMimeType();
         if ($mimeType !== $allowedMimeTypesByExtension[$extension]) {
             $this->logger->error('Mime type and extension not matching: '.$mimeType);
