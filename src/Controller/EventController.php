@@ -24,8 +24,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/{_locale}', name: 'app_event_', locale: 'fr')]
 class EventController extends AbstractController
 {
-    public function __construct(private LoggerInterface $logger, private FileUploader $fileUploader, private TranslatorInterface $translator)
-    {
+    public function __construct(
+        private LoggerInterface $logger,
+        private FileUploader $fileUploader,
+        private TranslatorInterface $translator,
+        private string $targetDirectory
+    ) {
     }
 
     #[Route('/back-office/event/list', name: 'list', methods: ['GET'])]
@@ -44,7 +48,12 @@ class EventController extends AbstractController
     }
 
     #[Route('/back-office/event/create', name: 'create')]
-    public function create(EntityManagerInterface $entityManager, Request $request, ValidatorInterface $validator, FileChecker $fileChecker): Response
+    public function create(
+        EntityManagerInterface $entityManager,
+        Request $request,
+        ValidatorInterface $validator,
+        FileChecker $fileChecker
+    ): Response
     {
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
@@ -74,7 +83,7 @@ class EventController extends AbstractController
                 /** @var ?UploadedFile $image */
                 $image = $form->get('image')->getData();
                 if ($image && $fileChecker->checkImageIsValid($image)) {
-                    $imageName = $this->fileUploader->upload($image);
+                    $imageName = $this->fileUploader->upload($image, $this->targetDirectory);
                     $event->setImageName($imageName);
                 }
 

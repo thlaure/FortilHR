@@ -21,7 +21,7 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    App\Service\FileUploader:
+    App\Controller\EventController:
         arguments:
             $targetDirectory: '%event_images_directory%'
 

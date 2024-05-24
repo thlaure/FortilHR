@@ -10,20 +10,24 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class FileUploader
 {
     public function __construct(
-        private string $targetDirectory,
         private SluggerInterface $slugger,
         private LoggerInterface $logger
     ) {
     }
 
-    public function upload(UploadedFile $file): string
+    public function upload(UploadedFile $file, string $targetDirectory): string
     {
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $this->slugger->slug($originalFilename);
         $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
 
         try {
-            $file->move($this->targetDirectory, $fileName);
+            if (!is_dir($targetDirectory)) {
+                $this->logger->error('The target directory does not exist: '.$targetDirectory);
+                throw new FileException('The target directory does not exist');
+            }
+            
+            $file->move($targetDirectory, $fileName);
         } catch (FileException $e) {
             $this->logger->error($e->getMessage());
             throw new FileException($e->getMessage());
