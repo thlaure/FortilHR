@@ -12,40 +12,38 @@ class FileCheckerTest extends TestCase
 {
     private FileChecker $fileChecker;
     private LoggerInterface $logger;
-    private array $allowedExtensions;
 
     protected function setUp(): void
     {
         $this->logger = $this->createMock(LoggerInterface::class);
         $this->fileChecker = new FileChecker($this->logger);
-        $this->allowedExtensions = Constraint::IMAGE_ALLOWED_EXTENSIONS;
     }
 
     // Tests isExtensionValid
     public function testIsExtensionValidWithAllowedExtension(): void
     {
-        $result = $this->fileChecker->isExtensionValid('image.jpg', $this->allowedExtensions);
+        $result = $this->fileChecker->isExtensionValid('image.jpg', Constraint::IMAGE_ALLOWED_EXTENSIONS);
 
         $this->assertTrue($result);
     }
 
     public function testIsExtensionValidWithNotAllowedExtension(): void
     {
-        $result = $this->fileChecker->isExtensionValid('image.php', $this->allowedExtensions);
+        $result = $this->fileChecker->isExtensionValid('image.php', Constraint::IMAGE_ALLOWED_EXTENSIONS);
 
         $this->assertFalse($result);
     }
 
     public function testIsExtensionValidWithNoExtension()
     {
-        $result = $this->fileChecker->isExtensionValid('image', $this->allowedExtensions);
+        $result = $this->fileChecker->isExtensionValid('image', Constraint::IMAGE_ALLOWED_EXTENSIONS);
 
         $this->assertFalse($result);
     }
 
     public function testIsExtensionValidWithUppercaseExtension()
     {
-        $result = $this->fileChecker->isExtensionValid('image.JPG', $this->allowedExtensions);
+        $result = $this->fileChecker->isExtensionValid('image.JPG', Constraint::IMAGE_ALLOWED_EXTENSIONS);
 
         $this->assertFalse($result);
     }
