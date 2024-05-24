@@ -9,6 +9,7 @@
 /public/uploads/
 /var/
 /vendor/
+/tests/Unit/Service/fixtures/image_test_copy.png
 ###< symfony/framework-bundle ###
 
 ###> friendsofphp/php-cs-fixer ###

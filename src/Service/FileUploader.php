@@ -21,18 +21,18 @@ class FileUploader
         $safeFilename = $this->slugger->slug($originalFilename);
         $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
 
-        try {
-            if (!is_dir($targetDirectory)) {
-                $this->logger->error('The target directory does not exist: '.$targetDirectory);
-                throw new FileException('The target directory does not exist');
-            }
-            
-            $file->move($targetDirectory, $fileName);
-        } catch (FileException $e) {
-            $this->logger->error($e->getMessage());
-            throw new FileException($e->getMessage());
+        if (!is_dir($targetDirectory)) {
+            $this->logger->error('The target directory does not exist: '.$targetDirectory);
+            throw new FileException('The target directory does not exist');
         }
 
-        return $fileName;
+        try {
+            $file->move($targetDirectory, $fileName);
+
+            return $fileName;
+        } catch (FileException $e) {
+            $this->logger->error($e->getMessage());
+            throw $e;
+        }
     }
 }
