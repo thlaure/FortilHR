@@ -54,9 +54,21 @@ jobs:
         if: false # Remove this line if Doctrine Migrations is installed
         run: docker compose exec -T php bin/console -e test doctrine:migrations:migrate --no-interaction
       -
+        name: Security check
+        if: false # Remove this line if Doctrine Migrations is installed
+        run: docker compose exec -T php symfony check:security
+      -
         name: Run PHPUnit
         if: false # Remove this line if PHPUnit is installed
         run: docker compose exec -T php bin/phpunit
+      -
+        name: Run CS Fixer
+        if: false # Remove this line if CS Fixer is installed
+        run: docker compose exec -T php vendor/bin/php-cs-fixer fix
+      -
+        name: Run PHPStan
+        if: false # Remove this line if PHPStan is installed
+        run: docker compose exec -T php vendor/bin/phpstan analyse src --level=9
       -
         name: Doctrine Schema Validator
         if: false # Remove this line if Doctrine ORM is installed
