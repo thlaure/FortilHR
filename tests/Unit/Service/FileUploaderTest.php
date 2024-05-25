@@ -71,11 +71,11 @@ class FileUploaderTest extends TestCase
         $this->slugger->expects($this->once())
             ->method('slug')
             ->willReturn($safeFilename);
-            
+
         $this->logger->expects($this->once())
             ->method('error')
             ->with($this->equalTo('The target directory does not exist: '.$targetDirectory));
-            
+
         $this->expectException(FileException::class);
 
         $this->fileUploader->upload($file, $targetDirectory);

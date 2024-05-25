@@ -61,21 +61,17 @@ class EventController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-            $errors = $validator->validate($event);
-            $formErrors = $form->getErrors(true);
-            if (count($errors) > 0 || count($formErrors) > 0) {
-                foreach ($errors as $error) {
-                    if ($error instanceof ConstraintViolation) {
-                        $this->addFlash('error', $this->translator->trans($error->getMessage()));
-                    }
-                }
+            foreach ($errors = $validator->validate($event) as $error) {
+                $this->addFlash('error', $this->translator->trans($error->getMessage()));
+            }
+            if (count($errors) > 0) {
+                return $this->redirectToRoute('app_event_create');
+            }
 
-                foreach ($formErrors as $formError) {
-                    if ($formError instanceof FormError) {
-                        $this->addFlash('error', $this->translator->trans($formError->getMessage()));
-                    }
-                }
-
+            foreach ($formErrors = $form->getErrors(true) as $error) {
+                $this->addFlash('error', $this->translator->trans($error->getMessage()));
+            }
+            if (count($formErrors) > 0) {
                 return $this->redirectToRoute('app_event_create');
             }
 
