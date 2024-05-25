@@ -1,5 +1,5 @@
-document.querySelectorAll('.alert #close-alert').forEach((element) => {
+document.querySelectorAll('.alert .close').forEach((element) => {
     element.addEventListener('click', () => {
         element.parentElement.remove();
     });
-})
+});
