@@ -15,10 +15,6 @@ WORKDIR /app
 
 VOLUME /app/var/
 
-# Set SHELL flags for RUN commands to allow -e and pipefail
-# Rationale: https://github.com/hadolint/hadolint/wiki/DL4006
-SHELL ["/bin/ash", "-o", "pipefail", "-c"]
-
 # persistent / runtime deps
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -63,6 +59,7 @@ ENV APP_ENV=dev XDEBUG_MODE=off
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -sS https://get.symfony.com/cli/installer | bash
 RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
