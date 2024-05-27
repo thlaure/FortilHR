@@ -25,9 +25,11 @@
         <div class="event">
             <h2 class="event-title">{{ event.name }}</h2>
             <p class="small">{{ event.startDate|date("d/m/Y H:i") }} - {{ event.endDate|date("d/m/Y H:i") }}</p>
-            <div class="event-image">
-                <img src="{{ asset("uploads/event/images/") ~ event.imageName }}" class="image" alt="Event illustration">
-            </div>
+                {% if event.imageName %}
+                <div class="event-image">
+                    <img src="{{ asset("uploads/event/images/") ~ event.imageName }}" class="image" alt="Event illustration">
+                </div>
+                {% endif %}
             <p class="event-description">{{ event.program }}</p>
         </div>
     </section>
