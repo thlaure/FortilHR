@@ -53,8 +53,7 @@ class EventController extends AbstractController
         Request $request,
         ValidatorInterface $validator,
         FileChecker $fileChecker
-    ): Response
-    {
+    ): Response {
         $event = new Event();
         $form = $this->createForm(EventType::class, $event);
 
