@@ -15,10 +15,6 @@ WORKDIR /app
 
 VOLUME /app/var/
 
-# Set SHELL flags for RUN commands to allow -e and pipefail
-# Rationale: https://github.com/hadolint/hadolint/wiki/DL4006
-SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
-
 # persistent / runtime deps
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
