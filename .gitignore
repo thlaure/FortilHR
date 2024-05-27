@@ -10,6 +10,7 @@
 /var/
 /vendor/
 /tests/Unit/Service/fixtures/image_test_copy.png
+/docker/db
 ###< symfony/framework-bundle ###
 
 ###> friendsofphp/php-cs-fixer ###
