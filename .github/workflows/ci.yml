@@ -63,6 +63,9 @@ jobs:
         name: Run PHPStan
         run: docker compose exec -T php vendor/bin/phpstan analyse src --level=9
       -
+        name: Doctrine Schema Update
+        run: docker compose exec -T php bin/console -e test doctrine:schema:update --force
+      -
         name: Doctrine Schema Validator
         run: docker compose exec -T php bin/console -e test doctrine:schema:validate
   lint:
