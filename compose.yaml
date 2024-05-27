@@ -46,7 +46,7 @@ services:
       # You should definitely change the password in production
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
       POSTGRES_USER: ${POSTGRES_USER:-app}
-    # The healthcheck is commented because it breaks the CI process withb unhealthy database container
+    # The healthcheck is commented because it breaks the CI process with unhealthy database container
     # healthcheck:
     #   test: ["CMD", "pg_isready -U ${POSTGRES_USER:-app}"]
     #   timeout: 5s
