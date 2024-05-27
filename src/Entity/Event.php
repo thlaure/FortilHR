@@ -62,7 +62,7 @@ class Event
         message: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     #[Assert\Length(
-        max: 2000,
+        max: 5000,
         maxMessage: Message::GENERIC_ENTITY_FIELD_ERROR
     )]
     #[Assert\Regex(
