@@ -77,7 +77,7 @@ jobs:
       -
         name: Validating database schema sync
         run: |
-          output=$(./bin/console doctrine:schema:update --dump-sql)
+          output=$(docker compose exec -T php bin/console doctrine:schema:update --dump-sql)
           if [[ "$output" = 'DROP TABLE doctrine_migration_versions;' ]]; then
             echo 'OK'
           fi
