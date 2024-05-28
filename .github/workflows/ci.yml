@@ -64,10 +64,10 @@ jobs:
         run: docker compose exec -T php vendor/bin/phpstan analyse src --level=9
       -
         name: Twig linter
-        run: docker compose exec -T php vbin/console lint:twig
+        run: docker compose exec -T php bin/console lint:twig
       -
         name: YAML linter
-        run: docker compose exec -T php vbin/console lint:yaml .
+        run: docker compose exec -T php bin/console lint:yaml .
       -
         name: Doctrine Schema Validator
         run: docker compose exec -T php bin/console -e test doctrine:schema:validate --skip-sync
