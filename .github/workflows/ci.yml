@@ -76,7 +76,12 @@ jobs:
       # doctrine:schema:update --dump-sql -> DROP TABLE doctrine_migration_versions;
       -
         name: Validating database schema sync
-        run: [[ $(./bin/console doctrine:schema:update --dump-sql) = 'DROP TABLE doctrine_migration_versions;' ]] && echo 'OK'
+        run: |
+          output=$(./bin/console doctrine:schema:update --dump-sql)
+          if [[ "$output" = 'DROP TABLE doctrine_migration_versions;' ]]; then
+            echo 'OK'
+          fi
+
   lint:
     name: Docker Lint
     runs-on: ubuntu-latest
