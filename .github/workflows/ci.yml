@@ -70,7 +70,12 @@ jobs:
         run: docker compose exec -T php vbin/console lint:yaml .
       -
         name: Doctrine Schema Validator
-        run: docker compose exec -T php bin/console -e test doctrine:schema:validate
+        run: docker compose exec -T php bin/console -e test doctrine:schema:validate --skip-sync
+      # Temporary fix for the following problem:
+      # doctrine:schema:validate -> [ERROR] The database schema is not in sync with the current mapping file.
+      # doctrine:schema:update --dump-sql -> DROP TABLE doctrine_migration_versions;
+      - name: Validating database schema sync
+        run: [[ "$(./bin/console doctrine:schema:update --dump-sql)" = "DROP TABLE doctrine_migration_versions;" ]] && echo "OK"
   lint:
     name: Docker Lint
     runs-on: ubuntu-latest
