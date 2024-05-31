@@ -21,9 +21,12 @@
     <section class="container">
         <h1 class="main-title">{{ 'welcome_to_the_app'|trans }}</h1>
 
-        <div class="qrcode-container">
-            <img class="qrcode-img" src="{{ qr_code_data_uri(qrcode_data) }}" alt="QR Code" width="200">
-        </div>
+        {% set foo = qr_code_data_uri(qrcode_data) %}
+        {% if foo %}
+            <div class="qrcode-container">
+                <img class="qrcode-img" src="{{ qr_code_data_uri(qrcode_data) }}" alt="QR Code" width="200">
+            </div>
+        {% endif %}
 
         <div class="btn-container">
             {% if event is not null %}
